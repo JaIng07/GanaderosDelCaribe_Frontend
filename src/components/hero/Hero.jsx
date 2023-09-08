@@ -7,9 +7,9 @@ function Hero() {
       <div className="flex flex-col lg:flex-row bg-primary relative font-montserrat px-10 h-[90vh]">
         <div className="lg:w-1/2 relative text-white z-20">
           <h1 className="text-2xl pt-10 md:text-4xl lg:text-6xl lg:pt-20 font-bold">
-            Bienvenido a tu Cooperativa
+            ¡Bienvenido a tu Cooperativa!
           </h1>
-          <p className="text-lg lg:text-sm mt-4">
+          <p className="text-base mt-4">
             Somos una cooperativa comprometida con el desarrollo y el bienestar
             de los ganaderos en la región del Caribe. Nuestro objetivo es
             promover la colaboración y el crecimiento sostenible de la industria
