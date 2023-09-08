@@ -1,7 +1,7 @@
 import Hero from "../components/hero/Hero";
 import Navbar from "../components/navbar/Navbar";
 
-function index() {
+function Index() {
   return (
     <div>
       <Navbar />
@@ -10,4 +10,4 @@ function index() {
   );
 }
 
-export default index;
+export default Index;

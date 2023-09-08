@@ -1,4 +1,4 @@
-import Index from "../pages/Index";
+import Index from "../pages";
 import { createBrowserRouter } from "react-router-dom";
 import { Login, Register } from "../pages/auth";
 

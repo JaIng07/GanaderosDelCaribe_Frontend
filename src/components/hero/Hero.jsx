@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import cow from "../../../public/assets/cow.png";
+import cow from "../../assets/cow.png";
 
 function Hero() {
   return (
