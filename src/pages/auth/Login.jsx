@@ -33,7 +33,7 @@ function Login() {
 
         <div className="mt-6">
           <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-primary rounded-lg hover:bg-primary/80 focus:outline-none">
-            Sign in
+            Iniciar Sesión
           </button>
         </div>
       </form>

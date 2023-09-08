@@ -5,7 +5,7 @@ function DrawerImage({ imgRoute = 'https://images.pexels.com/photos/448749/pexel
 
   return (
     <div
-      className="hidden bg-cover lg:block lg:w-2/3"
+      className="hidden bg-cover md:block lg:w-2/3"
       style={{
         backgroundImage:
           `url(${imgRoute})`,
