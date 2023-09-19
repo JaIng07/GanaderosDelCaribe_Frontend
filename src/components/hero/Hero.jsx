@@ -4,7 +4,7 @@ import cow from "../../assets/cow.png";
 function Hero() {
   return (
     <>
-      <div className="bg-primary pt-5 text-white relative overflow-hidden">
+      <div className="bg-primary pt-5 text-white relative overflow-hidden font-montserrat">
         <div className="container px-3 pb-40 mx-auto flex flex-wrap flex-col md:flex-row items-center">
           <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left z-10">
             <h1 className="text-5xl font-bold leading-tight">
