@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import cow404 from "../../assets/cow404.jpg";
+import cow404 from "../../assets/cow404.jpeg";
 
 function Page404() {
   return (

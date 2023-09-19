@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import DrawerImage from "../components/drawerImage/DrawerImage";
+import cowLogin from "../assets/cowLogin.jpeg";
 
 // eslint-disable-next-line react/prop-types
 function LoginLayout({ children }) {
   return (
     <div className="bg-white ">
       <div className="flex justify-center h-screen">
-        <DrawerImage />
+        <DrawerImage imgRoute={cowLogin} />
         <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
           <div className="flex-1">
             <div className="text-center">

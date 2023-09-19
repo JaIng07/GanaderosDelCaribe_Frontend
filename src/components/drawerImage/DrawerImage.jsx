@@ -1,7 +1,8 @@
 import RandomMessage from "./RandomMessage";
+import cowLogin from '../../assets/cowLogin.jpeg'
 
 // eslint-disable-next-line react/prop-types
-function DrawerImage({ imgRoute = 'https://images.pexels.com/photos/448749/pexels-photo-448749.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2' }) {
+function DrawerImage({ imgRoute = cowLogin }) {
 
   return (
     <div
