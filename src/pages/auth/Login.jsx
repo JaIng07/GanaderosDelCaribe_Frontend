@@ -1,10 +1,16 @@
-import FooterLogin from "../../components/footerLogin/FooterLogin";
-import LoginLayout from "../../layout/LoginLayout";
+import FooterAuth from "../../components/footerAuth/FooterAuth";
+import AuthLayout from "../../layout/AuthLayout";
 
 function Login() {
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log("Formulario enviado");
+  };
+
   return (
-    <LoginLayout>
-      <form>
+    <AuthLayout title="Inicia sesión para acceder a tu cuenta">
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email" className="block mb-2 text-sm text-gray-600 ">
             Correo Electronico
@@ -38,12 +44,12 @@ function Login() {
         </div>
       </form>
 
-      <FooterLogin
+      <FooterAuth
         text="No tienes una cuenta?"
         wordlink="Registrate"
         path="/auth/register"
       />
-    </LoginLayout>
+    </AuthLayout>
   );
 }
 

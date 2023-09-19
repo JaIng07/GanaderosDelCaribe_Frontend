@@ -3,7 +3,7 @@ import DrawerImage from "../components/drawerImage/DrawerImage";
 import cowLogin from "../assets/cowLogin.jpeg";
 
 // eslint-disable-next-line react/prop-types
-function LoginLayout({ children }) {
+function AuthLayout({ children, title = '' }) {
   return (
     <div className="bg-white ">
       <div className="flex justify-center h-screen">
@@ -19,7 +19,7 @@ function LoginLayout({ children }) {
                 </div>
               </Link>
               <p className="mt-3 text-gray-500 ">
-                Inicia sesión para acceder a tu cuenta
+                {title}
               </p>
             </div>
             <div className="mt-8">{children}</div>
@@ -30,4 +30,4 @@ function LoginLayout({ children }) {
   );
 }
 
-export default LoginLayout;
+export default AuthLayout;

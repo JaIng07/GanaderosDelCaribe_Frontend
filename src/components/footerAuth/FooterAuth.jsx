@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 
 // eslint-disable-next-line react/prop-types
-function FooterLogin({text, wordlink, path}) {
+function FooterAuth({text, wordlink, path}) {
   return (
     <p className="mt-6 text-sm text-center text-gray-400">
    {text}
@@ -12,4 +12,4 @@ function FooterLogin({text, wordlink, path}) {
   )
 }
 
-export default FooterLogin
+export default FooterAuth
