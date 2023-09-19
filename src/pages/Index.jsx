@@ -1,4 +1,5 @@
 import FeatureSections from "../components/FeatureSections/FeatureSections";
+import StatisticsSection from "../components/StatisticsSection/StatisticsSection";
 import Hero from "../components/hero/Hero";
 import Navbar from "../components/navbar/Navbar";
 
@@ -8,6 +9,7 @@ function Index() {
       <Navbar />
       <Hero />
       <FeatureSections />
+      <StatisticsSection />
     </div>
   );
 }
