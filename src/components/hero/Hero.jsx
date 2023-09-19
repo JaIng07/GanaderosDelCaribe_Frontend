@@ -4,34 +4,31 @@ import cow from "../../assets/cow.png";
 function Hero() {
   return (
     <>
-      <div className="flex flex-col lg:flex-row bg-primary relative font-montserrat px-10 h-[90vh]">
-        <div className="lg:w-1/2 relative text-white z-20">
-          <h1 className="text-2xl pt-10 md:text-4xl lg:text-6xl lg:pt-20 font-bold">
-            ¡Bienvenido a tu Cooperativa!
-          </h1>
-          <p className="text-base mt-4">
-            Somos una cooperativa comprometida con el desarrollo y el bienestar
-            de los ganaderos en la región del Caribe. Nuestro objetivo es
-            promover la colaboración y el crecimiento sostenible de la industria
-            ganadera, brindando apoyo integral a nuestros miembros.
-          </p>
-          <Link to="auth/login">
-            <button
+      <div className="bg-primary pt-5 text-white relative overflow-hidden">
+        <div className="container px-3 pb-40 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+          <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left z-10">
+            <h1 className="text-5xl font-bold leading-tight">
+              ¡Bienvenido a tu Cooperativa!
+            </h1>
+            <p className="leading-normal text-base py-4">
+              Somos una cooperativa comprometida con el desarrollo y el
+              bienestar de los ganaderos en la región del Caribe. Nuestro
+              objetivo es promover la colaboración y el crecimiento sostenible
+              de la industria ganadera, brindando apoyo integral a nuestros
+              miembros.
+            </p>
+            <Link
               to="auth/login"
-              className="bg-transparent border text-white font-medium py-2 px-12 my-5 hover:bg-slate-50 hover:text-primary transition duration-500 rounded-full"
+              className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-full my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
             >
               Iniciar Sesión
-            </button>
-          </Link>
+            </Link>
+          </div>
+          <div className="w-full md:w-3/5 text-center">
+            <img className="w-full md:w-4/5 z-50" src={cow} alt="Cow" />
+          </div>
         </div>
-        <div className="lg:w-1/2 lg:end-0 overflow-hidden relative z-10">
-          <img
-            src={cow}
-            alt="Imagen del Héroe"
-            className="w-3/4 lg:w-full lg:h-full"
-          />
-        </div>
-        <div className="absolute bottom-0 left-0 w-full z-10">
+        <div className="absolute bottom-0 left-0 w-full">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path
               fill="#fff"
