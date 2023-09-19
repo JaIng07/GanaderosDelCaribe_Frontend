@@ -5,10 +5,10 @@ function Hero() {
   return (
     <>
       <div className="bg-primary pt-5 text-white relative overflow-hidden font-montserrat">
-        <div className="container px-3 pb-40 mx-auto flex flex-wrap flex-col md:flex-row items-center">
+        <div className="container px-3 pb-40 mx-auto flex flex-wrap flex-col md:flex-row items-center ml-10">
           <div className="flex flex-col w-full md:w-2/5 justify-center items-start text-center md:text-left z-10">
             <h1 className="text-5xl font-bold leading-tight">
-              ¡Bienvenido a tu Cooperativa!
+              ¡Bienvenido a <br/>tu Cooperativa!
             </h1>
             <p className="leading-normal text-base py-4">
               Somos una cooperativa comprometida con el desarrollo y el

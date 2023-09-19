@@ -7,10 +7,10 @@ function Navbar() {
         <a href="/" className="flex items-center">
           <img
             src={logo}
-            className="h-3.5 mr-3"
+            className="h-6 mr-3"
             alt="Ganaderos Del Caribe Logo"
           />
-          <span className="self-center font-semibold font-montserrat text-white italic">
+          <span className="self-center font-semibold font-montserrat text-white italic text-3xl">
             Ganaderos Del Caribe
           </span>
         </a>
