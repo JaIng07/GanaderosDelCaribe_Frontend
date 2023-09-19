@@ -8,7 +8,7 @@ function StatisticsSection() {
       <img
         src={imageStats}
         alt=""
-        className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center grayscale blur-0 contrast-50"
+        className="absolute inset-0 -z-10 h-full w-full object-cover object-right md:object-center contrast-[.3]"
       />
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl lg:mx-0">

@@ -7,7 +7,7 @@ export default {
         montserrat: ["Montserrat", "sans-serif"],
       },
       colors: {
-        primary: "#257561",
+        primary: "#127475",
       },
     },
     plugins: [],
