@@ -1,11 +1,10 @@
-import { animals } from '../../data/animals'
 import AnimalCardItems from './AnimalCardItems'
 
-const animalCards = () => {
+const animalCards = ({arrAnimals=[]}) => {
   return (
     <div className="pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-content-stretch">
     {
-     animals.map(animal=>(
+     arrAnimals.map(animal=>(
        <AnimalCardItems
          key={animal.id}
          id={animal.identificationNumber}
