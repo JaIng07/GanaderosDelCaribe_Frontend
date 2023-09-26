@@ -4,7 +4,7 @@ import Footer from "../components/footer/Footer";
 import Hero from "../components/hero/Hero";
 import Navbar from "../components/navbar/Navbar";
 
-function Index() {
+function Landingpage() {
   return (
     <>
       <Navbar />
@@ -16,4 +16,4 @@ function Index() {
   );
 }
 
-export default Index;
+export default Landingpage;

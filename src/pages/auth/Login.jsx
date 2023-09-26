@@ -1,11 +1,16 @@
+import { useNavigate } from "react-router-dom";
 import FooterAuth from "../../components/footerAuth/FooterAuth";
 import AuthLayout from "../../layout/AuthLayout";
 
 function Login() {
 
+  const navigate = useNavigate();
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Formulario enviado");
+    navigate("/dashboard/animal-registration")
   };
 
   return (
