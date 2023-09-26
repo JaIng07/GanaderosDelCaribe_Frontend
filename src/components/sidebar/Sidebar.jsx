@@ -1,4 +1,4 @@
-import  { useEffect, useRef, useState } from "react"
+import  { useEffect, useState } from "react"
 import { NavLink, useLocation } from "react-router-dom"
 
 // eslint-disable-next-line react/prop-types
@@ -6,39 +6,10 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation()
   const { pathname } = location
 
-  const trigger = useRef(null)
-  const sidebar = useRef(null)
-
   const storedSidebarExpanded = localStorage.getItem("sidebar-expanded")
   const [sidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   )
-
-  // close on click outside
-  useEffect(() => {
-    const clickHandler = ({ target }) => {
-      if (!sidebar.current || !trigger.current) return
-      if (
-        !sidebarOpen ||
-        sidebar.current.contains(target) ||
-        trigger.current.contains(target)
-      )
-        return
-      setSidebarOpen(false)
-    }
-    document.addEventListener("click", clickHandler)
-    return () => document.removeEventListener("click", clickHandler)
-  })
-
-  // close if the esc key is pressed
-  useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
-      if (!sidebarOpen || keyCode !== 27) return
-      setSidebarOpen(false)
-    }
-    document.addEventListener("keydown", keyHandler)
-    return () => document.removeEventListener("keydown", keyHandler)
-  })
 
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded.toString())
@@ -51,15 +22,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
   return (
     <aside
-      ref={sidebar}
       className={`absolute z-30 left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-[#1c2434] duration-300 ease-linear lg:static lg:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5 mt-4 ml-auto">
         <button
-          ref={trigger}
           onClick={() => setSidebarOpen(!sidebarOpen)}
           aria-controls="sidebar"
           aria-expanded={sidebarOpen}
@@ -68,12 +36,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
          <svg fill="#fff" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" viewBox="-87.55 -87.55 635.88 635.88" xmlSpace="preserve" transform="matrix(-1, 0, 0, -1, 0, 0)rotate(0)" stroke="#000000" strokeWidth="0.00460775"><g id="SVGRepo_bgCarrier" strokeWidth="0"></g><g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M285.08,230.397L456.218,59.27c6.076-6.077,6.076-15.911,0-21.986L423.511,4.565c-2.913-2.911-6.866-4.55-10.992-4.55 c-4.127,0-8.08,1.639-10.993,4.55l-171.138,171.14L59.25,4.565c-2.913-2.911-6.866-4.55-10.993-4.55 c-4.126,0-8.08,1.639-10.992,4.55L4.558,37.284c-6.077,6.075-6.077,15.909,0,21.986l171.138,171.128L4.575,401.505 c-6.074,6.077-6.074,15.911,0,21.986l32.709,32.719c2.911,2.911,6.865,4.55,10.992,4.55c4.127,0,8.08-1.639,10.994-4.55 l171.117-171.12l171.118,171.12c2.913,2.911,6.866,4.55,10.993,4.55c4.128,0,8.081-1.639,10.992-4.55l32.709-32.719 c6.074-6.075,6.074-15.909,0-21.986L285.08,230.397z"></path> </g></svg>
         </button>
       </div>
-      {/* <!-- SIDEBAR HEADER --> */}
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear text-white">
-        {/* <!-- Sidebar Menu --> */}
         <nav className=" py-4 px-4 lg:mt-9 lg:px-6">
-          {/* <!-- Menu Group --> */}
           <div>
             <h3 className="mb-4 ml-4 text-sm font-semibold ">
               MENU

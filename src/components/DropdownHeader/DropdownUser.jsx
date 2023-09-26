@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import {
   UserIcon,
@@ -8,39 +7,13 @@ import {
 } from "@heroicons/react/24/outline";
 
 import UserOne from "../../assets/user-01.png"
+import useDrawer from "../../hooks/useDrawer";
 
 const DropdownUser = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+
   const navigate = useNavigate();
 
-  const trigger = useRef(null)
-  const dropdown = useRef(null)
-
-  // cierra la ventana cuando se da click en otro sitio
-  useEffect(() => {
-    const clickHandler = ({ target }) => {
-      if (!dropdown.current) return
-      if (
-        !dropdownOpen ||
-        dropdown.current.contains(target) ||
-        trigger.current.contains(target)
-      )
-        return
-      setDropdownOpen(false)
-    }
-    document.addEventListener("click", clickHandler)
-    return () => document.removeEventListener("click", clickHandler)
-  })
-
-  // cierra la ventana cuando se presiona la tecla esc
-  useEffect(() => {
-    const keyHandler = ({ keyCode }) => {
-      if (!dropdownOpen || keyCode !== 27) return
-      setDropdownOpen(false)
-    }
-    document.addEventListener("keydown", keyHandler)
-    return () => document.removeEventListener("keydown", keyHandler)
-  })
+  const { drawerOpen, setDrawerOpen, trigger, drawer } = useDrawer();
 
   const signOut = () => {
     console.log("signOut")
@@ -51,7 +24,7 @@ const DropdownUser = () => {
     <div className="relative">
       <div
         ref={trigger}
-        onClick={() => setDropdownOpen(!dropdownOpen)}
+        onClick={() => setDrawerOpen(!drawerOpen)}
         className="flex items-center gap-4"
       >
         <span className="hidden text-right lg:block">
@@ -67,7 +40,7 @@ const DropdownUser = () => {
 
         <svg
           className={`hidden fill-current sm:block ${
-            dropdownOpen ? "rotate-180" : ""
+            drawerOpen ? "rotate-180" : ""
           }`}
           width="12"
           height="8"
@@ -86,11 +59,11 @@ const DropdownUser = () => {
 
       {/* <!-- Dropdown Start --> */}
       <div
-        ref={dropdown}
-        onFocus={() => setDropdownOpen(true)}
-        onBlur={() => setDropdownOpen(false)}
+        ref={drawer}
+        onFocus={() => setDrawerOpen(true)}
+        onBlur={() => setDrawerOpen(false)}
         className={`absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default ${
-          dropdownOpen === true ? "block" : "hidden"
+          drawerOpen === true ? "block" : "hidden"
         }`}
       >
         <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 ">
