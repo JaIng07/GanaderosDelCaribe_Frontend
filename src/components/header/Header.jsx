@@ -1,4 +1,4 @@
-import DropdownUser from "../DropdownHeader/DropdownUser";
+import DropdownUser from "../DropdownUser/DropdownUser";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 
 // eslint-disable-next-line react/prop-types
@@ -18,7 +18,6 @@ const Header = ({ sidebarOpen, setSidebarOpen }) => {
             className="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm lg:hidden"
           />
         </div>
-
         <div className="flex items-center gap-3 2xsm:gap-7">
           <DropdownUser />
         </div>
