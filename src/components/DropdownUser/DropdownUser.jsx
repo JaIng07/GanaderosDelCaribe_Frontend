@@ -26,7 +26,7 @@ const DropdownUser = () => {
         onClick={() => setDrawerOpen(!drawerOpen)}
         className="flex items-center gap-4"
       >
-        <span className="hidden text-right lg:block">
+        <span className="text-right lg:block">
           <span className="block text-sm font-medium text-black">
             Hassan Barranco
           </span>
