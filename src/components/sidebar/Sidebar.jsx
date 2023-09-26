@@ -39,7 +39,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear text-white">
         <nav className=" py-4 px-4 lg:mt-9 lg:px-6">
           <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold ">MENU</h3>
+            <h3 className="mb-4 ml-4 text-sm font-montserrat font-normal ">MENU</h3>
             <SidebarItems items={sidebarItems} />
           </div>
         </nav>

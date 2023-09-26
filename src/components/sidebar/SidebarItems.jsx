@@ -16,7 +16,7 @@ const SidebarItems = ({ items = [] }) => {
             }`}
           >
             <item.icon className="h-6 w-6" />
-            {item.title}
+            <p className="font-montserrat font-normal">{item.title}</p>
           </NavLink>
         </li>
       ))}

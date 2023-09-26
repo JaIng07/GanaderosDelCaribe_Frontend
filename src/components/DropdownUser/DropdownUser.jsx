@@ -26,10 +26,8 @@ const DropdownUser = () => {
         onClick={() => setDrawerOpen(!drawerOpen)}
         className="flex items-center gap-4"
       >
-        <span className="text-right lg:block">
-          <span className="block text-sm font-medium text-black">
-            Hassan Barranco
-          </span>
+        <span className="text-right lg:block font-montserrat font-normal">
+          <span className="block text-sm text-black">Hassan Barranco</span>
           <span className="block text-xs">Finca dontimaton</span>
         </span>
 
@@ -60,7 +58,7 @@ const DropdownUser = () => {
           onClick={signOut}
         >
           <ArrowLeftOnRectangleIcon className="h-6 w-6" />
-          Cerrar Sesión
+          <p className="font-montserrat font-normal">Cerrar Sesión</p>
         </button>
       </div>
     </div>

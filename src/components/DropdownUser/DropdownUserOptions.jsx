@@ -11,7 +11,9 @@ const DropdownUserOptions = ({ userOptions = [] }) => {
             className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
           >
             <opt.icon className="h-6 w-6" />
+            <p className="font-montserrat font-normal">
             {opt.title}
+            </p>
           </Link>
         </li>
       ))}
