@@ -3,6 +3,7 @@ import { createBrowserRouter } from "react-router-dom";
 import { Login, Register } from "../pages/auth";
 import Page404 from "../components/page404/Page404";
 import AnimalRegistration from "../pages/dashboard/AnimalRegistration";
+import EmployeeRegistration from '../pages/dashboard/EmployeeRegistration'
 
 const Approuter = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const Approuter = createBrowserRouter([
     path: "/dashboard/animal-registration",
     element: <AnimalRegistration />,
   },
+  {
+    path: "/dashboard/employee-registration",
+    element: <EmployeeRegistration />,
+  }
 ]);
 
 export default Approuter;
