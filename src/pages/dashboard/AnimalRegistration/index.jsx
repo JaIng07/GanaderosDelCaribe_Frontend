@@ -1,9 +1,9 @@
 import { useState } from "react";
-import AnimalCards from "../../components/animalCard/AnimalCards";
-import DashboardLayout from "../../layout/DashboardLayout";
+import AnimalCards from "../../../components/animalCard/AnimalCards";
+import DashboardLayout from "../../../layout/DashboardLayout";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import ModalNewAnimal from "../../components/modals/ModalNewAnimal";
-import { animals } from "../../data/animals";
+import ModalNewAnimal from "../../../components/modals/ModalNewAnimal";
+import { animals } from "../../../data/animals";
 
 function AnimalRegistration() {
   const [isModalOpen, setIsModalOpen] = useState(false);

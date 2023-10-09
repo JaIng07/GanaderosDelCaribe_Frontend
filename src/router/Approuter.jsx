@@ -2,8 +2,9 @@ import Landingpage from "../pages/Landingpage";
 import { createBrowserRouter } from "react-router-dom";
 import { Login, Register } from "../pages/auth";
 import Page404 from "../components/page404/Page404";
-import AnimalRegistration from "../pages/dashboard/AnimalRegistration";
-import EmployeeRegistration from '../pages/dashboard/EmployeeRegistration'
+import IndexAnimalRegistration from "../pages/dashboard/AnimalRegistration/index";
+import IndexEmployeeRegistration from '../pages/dashboard/EmployeeRegistration/index'
+import AnimalRegistrationWithID from "../pages/dashboard/AnimalRegistration/AnimalRegistrationWithID";
 
 const Approuter = createBrowserRouter([
   {
@@ -21,11 +22,15 @@ const Approuter = createBrowserRouter([
   },
   {
     path: "/dashboard/animal-registration",
-    element: <AnimalRegistration />,
+    element: <IndexAnimalRegistration />,
+  },
+  {
+    path: "/dashboard/animal-registration/:idAnimal",
+    element: <AnimalRegistrationWithID />,
   },
   {
     path: "/dashboard/employee-registration",
-    element: <EmployeeRegistration />,
+    element: <IndexEmployeeRegistration />,
   }
 ]);
 
