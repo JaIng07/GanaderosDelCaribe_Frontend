@@ -5,9 +5,8 @@ import { useEffect, useState } from "react";
 // eslint-disable-next-line react/prop-types
 const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
 
-  const [isActive, setIsActive] = useState(false);
-  const [ initialValues, setInitialValues ] = useState({});
-  const { formState, onInputChange, onResetForm } = useForm(initialValues);
+  const [isActive, setIsActive] = useState(true);
+  const { formState, onInputChange, onResetForm } = useForm(animalToEdit);
 
   const { identificationNumber, race, weight, age, imagenURL } = formState;
 
@@ -15,8 +14,9 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
     console.log("Guardando...")
     console.log(formState)
     console.log(animalToEdit)
+    const payload = {formState};
     // const payload = {
-    //   id: new Date().getMilliseconds(),
+    //   //id: new Date().getMilliseconds(),
     //   identificationNumber: identificationNumber.trim(),
     //   race: race.trim(),
     //   weight: weight.trim(),
@@ -25,7 +25,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
     // };
 
     // if (!identificationNumber || !race || !weight || !age) return;
-    // console.log(payload)
+    console.log(payload)
 
 
     // cerramos y reseteamos el formulario
@@ -33,30 +33,6 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
     setIsActive(false);
     onClose();
   };
-
-  // habilita el boton guardar cuando todos los campos estan llenos
-  useEffect(() => {
-    // if (
-    //   identificationNumber.trim() &&
-    //   race.trim() &&
-    //   weight.trim() &&
-    //   age.trim()
-    // )
-      setIsActive(true);
-  }, [identificationNumber, race, weight, age]);
-
-  // seteamos los valores iniciales del formulario
-  useEffect(() => {
-    console.log( animalToEdit)
-    setInitialValues({
-      identificationNumber: animalToEdit.identificationNumber,
-      race: animalToEdit.race,
-      weight: animalToEdit.weight,
-      age: animalToEdit.age,
-      imagenURL: animalToEdit.imagenURL,
-    })
-  }, [animalToEdit]);
-
 
 
   return (
@@ -73,9 +49,9 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
             className="w-full border rounded-md py-2 px-3"
             name="race"
             onChange={onInputChange}
-            placeholder={animalToEdit.race}
+            placeholder="Beefmaster"
             type="text"
-            value={race}
+            defaultValue={animalToEdit.race}
           />
         </div>
         <div className="mb-4">
@@ -91,7 +67,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
             onChange={onInputChange}
             placeholder="131861"
             type="number"
-            value={identificationNumber}
+            defaultValue={animalToEdit.identificationNumber}
           />
         </div>
         <div className="mb-4">
@@ -107,7 +83,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
             onChange={onInputChange}
             placeholder="17"
             type="number"
-            value={weight}
+            defaultValue={animalToEdit.weight}
           />
         </div>
         <div className="mb-4">
@@ -123,7 +99,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
             onChange={onInputChange}
             placeholder="https//wwww.example.com/imagen.jpg"
             type="text"
-            value={imagenURL}
+            defaultValue={animalToEdit.imagenURL}
           />
         </div>
         <div className="mb-4">
@@ -139,10 +115,11 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
             onChange={onInputChange}
             placeholder="12"
             type="text"
-            value={age}
+            defaultValue={animalToEdit.age}
           />
         </div>
         <button
+          type="button"
           className={`py-2 px-4 rounded ${
             isActive
               ? "bg-primary text-white hover:bg-primary/60"
