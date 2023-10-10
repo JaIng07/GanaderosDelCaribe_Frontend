@@ -13,7 +13,7 @@ const ModalLayout = ({ isOpen, onClose, children, title = 'Hola!' }) => {
       <div className="relative w-auto max-w-3xl mx-auto my-6">
         <div className="relative flex flex-col w-full bg-white border-2 rounded-lg shadow-lg outline-none focus:outline-none">
           <div className="flex items-start justify-between p-5 border-b border-solid rounded-t-lg border-blueGray-200">
-            <h3 className="text-2xl font-semibold">{title}</h3>
+            <h3 className="text-2xl font-semibold text-black">{title}</h3>
             <button
               className="p-1 ml-auto bg-transparent border-0 text-black float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
               onClick={onClose}
