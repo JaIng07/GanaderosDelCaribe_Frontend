@@ -46,7 +46,7 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
       onClose={onClose}
       title="Panel registro nuevo animal"
     >
-      <form>
+      <form className="text-black">
         <div className="mb-4">
           <label
             htmlFor="raza"

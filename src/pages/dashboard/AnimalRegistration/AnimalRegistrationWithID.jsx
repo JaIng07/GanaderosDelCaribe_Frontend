@@ -7,14 +7,11 @@ import ModalEditAnimal from "../../../components/modals/ModalEditAnimal";
 
 const AnimalRegistrationWithID = () => {
   let { idAnimal } = useParams();
+
   const [animal, setAnimal] = useState([]);
-
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [arrAnimals, setArrAnimals] = useState(animals);
-  const [animalToEditData, setAnimalToEditData] = useState(null);
 
-  const openEditModal = (animal) => {
-    setAnimalToEditData(animal); // Establece el animal a editar
+  const openEditModal = () => {
     setIsEditModalOpen(true); // Abre el modal de edición
   };
 
@@ -60,7 +57,7 @@ const AnimalRegistrationWithID = () => {
             <PencilSquareIcon className="h-5 w-5" />
           </div>
         </div>
-        <ModalEditAnimal isOpen={isEditModalOpen} onClose={closeEditModal} setArrAnimals={setArrAnimals} animalToEdit={animalToEditData}/>
+        <ModalEditAnimal isOpen={isEditModalOpen} onClose={closeEditModal} animalToEdit={animal} />
       </div>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
