@@ -3,49 +3,40 @@ import { useForm } from "../../hooks/useForm";
 import { useEffect, useState } from "react";
 
 // eslint-disable-next-line react/prop-types
-const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
-  const [isActive, setIsActive] = useState(false);
-  const { formState, onInputChange, onResetForm } = useForm({
-    identificationNumber: "",
-    race: "",
-    weight: "",
-    age: "",
-    imagenURL: "",
-  });
+const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
+
+  const [isActive, setIsActive] = useState(true);
+  const { formState, onInputChange, onResetForm } = useForm(animalToEdit);
+
   const { identificationNumber, race, weight, age, imagenURL } = formState;
 
   const handleSave = () => {
-    const payload = {
-      id: new Date().getMilliseconds(),
-      identificationNumber: identificationNumber.trim(),
-      race: race.trim(),
-      weight: weight.trim(),
-      age: age.trim(),
-      imagenURL: imagenURL.trim(),
-    };
+    console.log("Guardando...")
+    console.log(formState)
+    console.log(animalToEdit)
+    const payload = {formState};
+    // const payload = {
+    //   //id: new Date().getMilliseconds(),
+    //   identificationNumber: identificationNumber.trim(),
+    //   race: race.trim(),
+    //   weight: weight.trim(),
+    //   age: age.trim(),
+    //   imagenURL: imagenURL.trim(),
+    // };
 
-    if(!identificationNumber || !race || !weight || !age) return;
+    // if (!identificationNumber || !race || !weight || !age) return;
+    console.log(payload)
 
-    setArrAnimals((prevState) => [payload, ...prevState]);
 
     // cerramos y reseteamos el formulario
     onResetForm();
-    setIsActive(false)
+    setIsActive(false);
     onClose();
   };
 
-  // habilita el boton guardar cuando todos los campos estan llenos
-  useEffect(() => {
-    if(identificationNumber.trim() && race.trim() && weight.trim() && age.trim()) setIsActive(true);
-  },[identificationNumber, race, weight, age])
-
 
   return (
-    <ModalLayout
-      isOpen={isOpen}
-      onClose={onClose}
-      title="Panel registro nuevo animal"
-    >
+    <ModalLayout isOpen={isOpen} onClose={onClose} title="Editar animal">
       <form className="text-black">
         <div className="mb-4">
           <label
@@ -60,7 +51,7 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
             onChange={onInputChange}
             placeholder="Beefmaster"
             type="text"
-            value={race}
+            defaultValue={animalToEdit.race}
           />
         </div>
         <div className="mb-4">
@@ -76,7 +67,7 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
             onChange={onInputChange}
             placeholder="131861"
             type="number"
-            value={identificationNumber}
+            defaultValue={animalToEdit.identificationNumber}
           />
         </div>
         <div className="mb-4">
@@ -92,7 +83,7 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
             onChange={onInputChange}
             placeholder="17"
             type="number"
-            value={weight}
+            defaultValue={animalToEdit.weight}
           />
         </div>
         <div className="mb-4">
@@ -108,7 +99,7 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
             onChange={onInputChange}
             placeholder="https//wwww.example.com/imagen.jpg"
             type="text"
-            value={imagenURL}
+            defaultValue={animalToEdit.imagenURL}
           />
         </div>
         <div className="mb-4">
@@ -124,10 +115,11 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
             onChange={onInputChange}
             placeholder="12"
             type="text"
-            value={age}
+            defaultValue={animalToEdit.age}
           />
         </div>
         <button
+          type="button"
           className={`py-2 px-4 rounded ${
             isActive
               ? "bg-primary text-white hover:bg-primary/60"
@@ -136,11 +128,11 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
           disabled={!isActive}
           onClick={handleSave}
         >
-          Guardar
+          Editar
         </button>
       </form>
     </ModalLayout>
   );
 };
 
-export default ModalNewAnimal;
+export default ModalEditAnimal;

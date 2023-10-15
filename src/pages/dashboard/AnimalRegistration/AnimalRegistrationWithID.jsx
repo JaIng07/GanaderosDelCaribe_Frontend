@@ -3,10 +3,21 @@ import { useParams } from "react-router-dom";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import { animals } from "../../../data/animals";
+import ModalEditAnimal from "../../../components/modals/ModalEditAnimal";
 
 const AnimalRegistrationWithID = () => {
   let { idAnimal } = useParams();
+
   const [animal, setAnimal] = useState([]);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const openEditModal = () => {
+    setIsEditModalOpen(true); // Abre el modal de edición
+  };
+
+  const closeEditModal = () => {
+    setIsEditModalOpen(false);
+  };
 
   useEffect(() => {
     setAnimal(
@@ -40,10 +51,13 @@ const AnimalRegistrationWithID = () => {
           <div className="border rounded p-1 hover:bg-red-500 hover:text-white cursor-pointer">
             <TrashIcon className="h-5 w-5" />
           </div>
-          <div className="border rounded p-1 hover:bg-primary hover:text-white cursor-pointer">
+          <div className="border rounded p-1 hover:bg-primary hover:text-black cursor-pointer"
+            onClick={openEditModal}
+          >
             <PencilSquareIcon className="h-5 w-5" />
           </div>
         </div>
+        <ModalEditAnimal isOpen={isEditModalOpen} onClose={closeEditModal} animalToEdit={animal} />
       </div>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
