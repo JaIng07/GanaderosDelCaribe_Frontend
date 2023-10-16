@@ -2,9 +2,9 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
-function AnimalCardItems({ id, raza, edad, peso, imagenURL }) {
-  const image = imagenURL
-    ? imagenURL
+function AnimalCardItems({ id, raza, edad, peso, imagenUrl }) {
+  const image = imagenUrl
+    ? imagenUrl
     : "https://i.pinimg.com/474x/18/cc/58/18cc58f204186fe709ebcb229895b43e.jpg";
 
   return (

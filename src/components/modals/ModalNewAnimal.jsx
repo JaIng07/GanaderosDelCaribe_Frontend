@@ -1,44 +1,57 @@
 import ModalLayout from "../../layout/ModalLayout";
 import { useForm } from "../../hooks/useForm";
 import { useEffect, useState } from "react";
+import { createAnimal } from "../../services/animal.services";
 
 // eslint-disable-next-line react/prop-types
-const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
+const ModalNewAnimal = ({ isOpen, onClose, setReloadDataAnimals }) => {
   const [isActive, setIsActive] = useState(false);
   const { formState, onInputChange, onResetForm } = useForm({
     identificationNumber: "",
     race: "",
     weight: "",
-    age: "",
-    imagenURL: "",
+    birthdate: "",
+    imagenUrl: "",
   });
-  const { identificationNumber, race, weight, age, imagenURL } = formState;
 
-  const handleSave = () => {
+  const { identificationNumber, race, weight, birthdate, imagenUrl } = formState;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     const payload = {
       id: new Date().getMilliseconds(),
       identificationNumber: identificationNumber.trim(),
       race: race.trim(),
       weight: weight.trim(),
-      age: age.trim(),
-      imagenURL: imagenURL.trim(),
+      birthdate: birthdate.trim(),
+      imagenUrl: imagenUrl.trim(),
+      animalType: "ganado",
     };
 
-    if(!identificationNumber || !race || !weight || !age) return;
+    if (!identificationNumber || !race || !weight || !birthdate) return;
 
-    setArrAnimals((prevState) => [payload, ...prevState]);
+    const res = await createAnimal(payload);
 
-    // cerramos y reseteamos el formulario
-    onResetForm();
-    setIsActive(false)
-    onClose();
+    if (res.ok) {
+      setReloadDataAnimals(prev=>!prev)
+      // cerramos y reseteamos el formulario
+      onResetForm();
+      setIsActive(false);
+      onClose();
+    }
   };
 
   // habilita el boton guardar cuando todos los campos estan llenos
   useEffect(() => {
-    if(identificationNumber.trim() && race.trim() && weight.trim() && age.trim()) setIsActive(true);
-  },[identificationNumber, race, weight, age])
-
+    if (
+      identificationNumber.trim() &&
+      race.trim() &&
+      weight.trim() &&
+      birthdate.trim()
+    )
+      setIsActive(true);
+  }, [identificationNumber, race, weight, birthdate]);
 
   return (
     <ModalLayout
@@ -46,7 +59,7 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
       onClose={onClose}
       title="Panel registro nuevo animal"
     >
-      <form className="text-black">
+      <form className="text-black" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
             htmlFor="raza"
@@ -104,11 +117,11 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
           </label>
           <input
             className="w-full border rounded-md py-2 px-3"
-            name="imagenURL"
+            name="imagenUrl"
             onChange={onInputChange}
             placeholder="https//wwww.example.com/imagen.jpg"
             type="text"
-            value={imagenURL}
+            value={imagenUrl}
           />
         </div>
         <div className="mb-4">
@@ -120,11 +133,11 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
           </label>
           <input
             className="w-full border rounded-md py-2 px-3"
-            name="age"
+            name="birthdate"
             onChange={onInputChange}
-            placeholder="12"
+            placeholder="AAAA-MM-DD"
             type="text"
-            value={age}
+            value={birthdate}
           />
         </div>
         <button
@@ -134,7 +147,7 @@ const ModalNewAnimal = ({ isOpen, onClose, setArrAnimals }) => {
               : "bg-gray-400 text-gray-500 cursor-not-allowed"
           }`}
           disabled={!isActive}
-          onClick={handleSave}
+          type="submit"
         >
           Guardar
         </button>
