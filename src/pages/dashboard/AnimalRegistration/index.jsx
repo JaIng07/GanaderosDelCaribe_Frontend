@@ -1,21 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AnimalCards from "../../../components/animalCard/AnimalCards";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import ModalNewAnimal from "../../../components/modals/ModalNewAnimal";
-import { animals } from "../../../data/animals";
+import { getAnimals } from "../../../services/animal.services";
 
 function AnimalRegistration() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [arrAnimals, setArrAnimals] = useState(animals);
+  const [reloadDataAnimals, setReloadDataAnimals] = useState(false);
+  const [arrAnimals, setArrAnimals] = useState([]);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
+  useEffect(() => {
+    const getAllAnimals = async () => {
+      const animals = await getAnimals()
+      setArrAnimals(animals.animals)
+    }
+    getAllAnimals()
+  },[reloadDataAnimals])
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
+  const openModal = () => setIsModalOpen(true)
+
+  const closeModal = () => setIsModalOpen(false)
 
   return (
     <DashboardLayout>
@@ -30,7 +35,7 @@ function AnimalRegistration() {
           <PlusIcon className="h-5 w-5" />
         </div>
       </div>
-      <ModalNewAnimal isOpen={isModalOpen} onClose={closeModal} setArrAnimals={setArrAnimals}/>
+      <ModalNewAnimal isOpen={isModalOpen} onClose={closeModal} setReloadDataAnimals={setReloadDataAnimals} />
       <AnimalCards arrAnimals={arrAnimals} />
     </DashboardLayout>
   );
