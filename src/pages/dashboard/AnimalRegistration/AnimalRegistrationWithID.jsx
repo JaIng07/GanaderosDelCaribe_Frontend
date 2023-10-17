@@ -78,7 +78,7 @@ const AnimalRegistrationWithID = () => {
               <p className="text-lg font-medium">{animal.race}</p>
             </div>
             <div>
-              <p className="text-gray-600 text-sm">Edad:</p>
+              <p className="text-gray-600 text-sm">Fecha de nacimiento:</p>
               <p className="text-lg font-medium">{animal.birthdate}</p>
             </div>
             <div>

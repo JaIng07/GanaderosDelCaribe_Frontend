@@ -2,7 +2,7 @@ import { ChevronRightIcon } from '@heroicons/react/20/solid';
 import { Link } from 'react-router-dom';
 
 // eslint-disable-next-line react/prop-types
-function AnimalCardItems({ id, raza, edad, peso, imagenUrl, identificationNumber }) {
+function AnimalCardItems({ id, raza, birthDate, peso, imagenUrl, identificationNumber }) {
   const image = imagenUrl
     ? imagenUrl
     : "https://i.pinimg.com/474x/18/cc/58/18cc58f204186fe709ebcb229895b43e.jpg";
@@ -31,8 +31,8 @@ function AnimalCardItems({ id, raza, edad, peso, imagenUrl, identificationNumber
         </div>
         <div className="col-span-2 md:col-span-1">
           <div className="bg-gray-50 p-3 rounded-lg">
-            <p className="text-gray-600 text-sm">Edad:</p>
-            <p className="text-lg font-medium pt-1">{edad}</p>
+            <p className="text-gray-600 text-sm">Fecha de nacimiento:</p>
+            <p className="text-lg font-medium pt-1">{birthDate}</p>
           </div>
         </div>
         <div className="col-span-2 md:col-span-1">

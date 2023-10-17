@@ -18,7 +18,7 @@ const animalCards = ({ arrAnimals = [] }) => {
           key={animal.id}
           id={animal.id}
           raza={animal.race}
-          edad={animal.birthdate}
+          birthDate={animal.birthdate}
           peso={animal.weight}
           imagenUrl={animal.imagenUrl}
           identificationNumber={animal.identificationNumber}
