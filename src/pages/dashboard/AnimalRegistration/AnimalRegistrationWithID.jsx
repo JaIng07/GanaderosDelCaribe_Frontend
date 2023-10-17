@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import DashboardLayout from "../../../layout/DashboardLayout";
-import { animals } from "../../../data/animals";
 import ModalEditAnimal from "../../../components/modals/ModalEditAnimal";
+import {getAnimal} from "../../../services/animal.services";
 
 const AnimalRegistrationWithID = () => {
   let { idAnimal } = useParams();
@@ -20,9 +20,12 @@ const AnimalRegistrationWithID = () => {
   };
 
   useEffect(() => {
-    setAnimal(
-      animals.find((animal) => animal.identificationNumber == idAnimal)
-    );
+    const obtainAnimalByID= async ()=>{
+      const response= await getAnimal(idAnimal);
+      console.log(response);
+      setAnimal(response.animal);
+    }
+    obtainAnimalByID();
   }, [idAnimal]);
 
   if (!animal) {
@@ -62,22 +65,21 @@ const AnimalRegistrationWithID = () => {
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
           <img
-            src={animal.imagenURL}
+            src={animal.imagenUrl}
             className="w-full h-48 object-cover mb-6 rounded-md"
           />
-          <h2 className="text-2xl font-semibold mb-4">hola</h2>
           <div className="grid grid-cols-2 gap-4">
             <div>
               <p className="text-gray-600 text-sm">Número de Identificación:</p>
-              <p className="text-lg font-medium">{animal.id}</p>
+              <p className="text-lg font-medium">{animal.identificationNumber}</p>
             </div>
             <div>
               <p className="text-gray-600 text-sm">Raza:</p>
               <p className="text-lg font-medium">{animal.race}</p>
             </div>
             <div>
-              <p className="text-gray-600 text-sm">Edad:</p>
-              <p className="text-lg font-medium">{animal.age} años</p>
+              <p className="text-gray-600 text-sm">Fecha de nacimiento:</p>
+              <p className="text-lg font-medium">{animal.birthdate}</p>
             </div>
             <div>
               <p className="text-gray-600 text-sm">Peso:</p>
