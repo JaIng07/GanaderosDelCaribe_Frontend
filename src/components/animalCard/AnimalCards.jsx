@@ -16,11 +16,12 @@ const animalCards = ({ arrAnimals = [] }) => {
       {arrAnimals.map((animal) => (
         <AnimalCardItems
           key={animal.id}
-          id={animal.identificationNumber}
+          id={animal.id}
           raza={animal.race}
           edad={animal.birthdate}
           peso={animal.weight}
           imagenUrl={animal.imagenUrl}
+          identificationNumber={animal.identificationNumber}
         />
       ))}
     </div>

@@ -8,7 +8,6 @@ export const SnackbarUtilsConfigurator = () => {
 
 export default {
   success(msg) {
-    console.log("success", msg)
     this.toast(msg, "success");
   },
   warning(msg) {
@@ -21,7 +20,6 @@ export default {
     this.toast(msg, "error");
   },
   toast(msg, variant = "default") {
-    console.log("toast", msg, variant)
     useSnackbarRef.enqueueSnackbar(msg, { variant });
   },
 };
