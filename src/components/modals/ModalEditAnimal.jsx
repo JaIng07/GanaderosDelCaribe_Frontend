@@ -1,37 +1,24 @@
 import ModalLayout from "../../layout/ModalLayout";
 import { useForm } from "../../hooks/useForm";
-import { useEffect, useState } from "react";
+import { putAnimal } from "../../services/animal.services";
 
 // eslint-disable-next-line react/prop-types
-const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
+const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {}, setReloadAnimal}) => {
 
-  const [isActive, setIsActive] = useState(true);
   const { formState, onInputChange, onResetForm } = useForm(animalToEdit);
 
-  const { identificationNumber, race, weight, age, imagenURL } = formState;
+  const {id, identificationNumber, race, weight, birthdate, imagenUrl } = formState;
 
-  const handleSave = () => {
-    console.log("Guardando...")
-    console.log(formState)
-    console.log(animalToEdit)
-    const payload = {formState};
-    // const payload = {
-    //   //id: new Date().getMilliseconds(),
-    //   identificationNumber: identificationNumber.trim(),
-    //   race: race.trim(),
-    //   weight: weight.trim(),
-    //   age: age.trim(),
-    //   imagenURL: imagenURL.trim(),
-    // };
 
-    // if (!identificationNumber || !race || !weight || !age) return;
-    console.log(payload)
+  const handleSave = async() => {
+    const data = { "identificationNumber": identificationNumber, "race": race, "weight":weight, "birthdate":birthdate, "imagenUrl":imagenUrl}    
 
+    await putAnimal(id, data)
 
     // cerramos y reseteamos el formulario
     onResetForm();
-    setIsActive(false);
     onClose();
+    setReloadAnimal(prev=>!prev);
   };
 
 
@@ -51,7 +38,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
             onChange={onInputChange}
             placeholder="Beefmaster"
             type="text"
-            defaultValue={animalToEdit.race}
+            defaultValue={race}
           />
         </div>
         <div className="mb-4">
@@ -67,7 +54,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
             onChange={onInputChange}
             placeholder="131861"
             type="number"
-            defaultValue={animalToEdit.identificationNumber}
+            defaultValue={identificationNumber}
           />
         </div>
         <div className="mb-4">
@@ -83,7 +70,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
             onChange={onInputChange}
             placeholder="17"
             type="number"
-            defaultValue={animalToEdit.weight}
+            defaultValue={weight}
           />
         </div>
         <div className="mb-4">
@@ -95,37 +82,32 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {} }) => {
           </label>
           <input
             className="w-full border rounded-md py-2 px-3"
-            name="imagenURL"
+            name="imagenUrl"
             onChange={onInputChange}
             placeholder="https//wwww.example.com/imagen.jpg"
             type="text"
-            defaultValue={animalToEdit.imagenURL}
+            defaultValue={imagenUrl}
           />
         </div>
         <div className="mb-4">
           <label
-            htmlFor="edad"
+            htmlFor="año de nacimiento"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Edad
+            Año de nacimiento
           </label>
           <input
             className="w-full border rounded-md py-2 px-3"
-            name="age"
+            name="birthdate"
             onChange={onInputChange}
-            placeholder="12"
+            placeholder="AAAA-MM-DD"
             type="text"
-            defaultValue={animalToEdit.age}
+            defaultValue={birthdate}
           />
         </div>
         <button
           type="button"
-          className={`py-2 px-4 rounded ${
-            isActive
-              ? "bg-primary text-white hover:bg-primary/60"
-              : "bg-gray-400 text-gray-500 cursor-not-allowed"
-          }`}
-          disabled={!isActive}
+          className={"py-2 px-4 rounded bg-primary text-white hover:bg-primary/6"}
           onClick={handleSave}
         >
           Editar
