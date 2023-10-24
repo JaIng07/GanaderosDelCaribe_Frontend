@@ -23,7 +23,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {}, setReloadAnimal})
 
 
   return (
-    <ModalLayout isOpen={isOpen} onClose={onClose} title="Editar animal">
+    <ModalLayout  isOpen={isOpen} onClose={onClose} title="Panel de edición de animal">
       <form className="text-black">
         <div className="mb-4">
           <label
@@ -107,7 +107,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {}, setReloadAnimal})
         </div>
         <button
           type="button"
-          className={"py-2 px-4 rounded bg-primary text-white hover:bg-primary/6"}
+          className={"py-2 px-4 rounded bg-primary text-white hover:bg-primary/60"}
           onClick={handleSave}
         >
           Editar
