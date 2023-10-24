@@ -8,8 +8,9 @@ import {getAnimal} from "../../../services/animal.services";
 const AnimalRegistrationWithID = () => {
   let { idAnimal } = useParams();
 
-  const [animal, setAnimal] = useState([]);
+  const [animal, setAnimal] = useState({});
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [reloadAnimal, setReloadAnimal] = useState(false);
 
   const openEditModal = () => {
     setIsEditModalOpen(true); // Abre el modal de edición
@@ -20,13 +21,12 @@ const AnimalRegistrationWithID = () => {
   };
 
   useEffect(() => {
-    const obtainAnimalByID= async ()=>{
-      const response= await getAnimal(idAnimal);
-      console.log(response);
+    const obtainAnimalByID = async () => {
+      const response = await getAnimal(idAnimal);
       setAnimal(response.animal);
     }
     obtainAnimalByID();
-  }, [idAnimal]);
+  }, [idAnimal, reloadAnimal]);
 
   if (!animal) {
     return (
@@ -60,7 +60,7 @@ const AnimalRegistrationWithID = () => {
             <PencilSquareIcon className="h-5 w-5" />
           </div>
         </div>
-        <ModalEditAnimal isOpen={isEditModalOpen} onClose={closeEditModal} animalToEdit={animal} />
+        {animal.id && <ModalEditAnimal isOpen={isEditModalOpen} onClose={closeEditModal} animalToEdit={animal} setReloadAnimal={setReloadAnimal} /> }
       </div>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
