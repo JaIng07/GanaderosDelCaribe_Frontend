@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import ModalEditAnimal from "../../../components/modals/ModalEditAnimal";
+import ModalDeleteAnimal from "../../../components/modals/ModalDeleteAnimal";
 import {getAnimal} from "../../../services/animal.services";
 
 const AnimalRegistrationWithID = () => {
@@ -10,6 +11,7 @@ const AnimalRegistrationWithID = () => {
 
   const [animal, setAnimal] = useState({});
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [reloadAnimal, setReloadAnimal] = useState(false);
 
   const openEditModal = () => {
@@ -18,6 +20,14 @@ const AnimalRegistrationWithID = () => {
 
   const closeEditModal = () => {
     setIsEditModalOpen(false);
+  };
+
+  const openDeleteModal = () => {
+    setIsDeleteModalOpen(true); // Abre el modal de edición
+  };
+
+  const closeDeleteModal = () => {
+    setIsDeleteModalOpen(false);
   };
 
   useEffect(() => {
@@ -51,7 +61,9 @@ const AnimalRegistrationWithID = () => {
           </p>
         </div>
         <div className="flex items-center space-x-3">
-          <div className="border rounded p-1 hover:bg-red-500 hover:text-white cursor-pointer">
+          <div className="border rounded p-1 hover:bg-red-500 hover:text-white cursor-pointer"
+            onClick={openDeleteModal}
+          >
             <TrashIcon className="h-5 w-5" />
           </div>
           <div className="border rounded p-1 hover:bg-primary hover:text-black cursor-pointer"
@@ -61,6 +73,7 @@ const AnimalRegistrationWithID = () => {
           </div>
         </div>
         {animal.id && <ModalEditAnimal isOpen={isEditModalOpen} onClose={closeEditModal} animalToEdit={animal} setReloadAnimal={setReloadAnimal} /> }
+        {animal.id && <ModalDeleteAnimal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} animalToDelete={animal} setReloadAnimal={setReloadAnimal} /> }
       </div>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
