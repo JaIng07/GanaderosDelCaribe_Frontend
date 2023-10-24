@@ -73,7 +73,7 @@ const AnimalRegistrationWithID = () => {
           </div>
         </div>
         {animal.id && <ModalEditAnimal isOpen={isEditModalOpen} onClose={closeEditModal} animalToEdit={animal} setReloadAnimal={setReloadAnimal} /> }
-        {animal.id && <ModalDeleteAnimal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} animalToDelete={animal} setReloadAnimal={setReloadAnimal} /> }
+        {animal.id && <ModalDeleteAnimal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} animalToDelete={animal}/> }
       </div>
       <div className="min-h-screen flex items-center justify-center bg-gray-100">
         <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">

@@ -23,7 +23,7 @@ const ModalEditAnimal = ({ isOpen, onClose, animalToEdit = {}, setReloadAnimal})
 
 
   return (
-    <ModalLayout isOpen={isOpen} onClose={onClose} title="Editar animal">
+    <ModalLayout  isOpen={isOpen} onClose={onClose} title="Panel de edición de animal">
       <form className="text-black">
         <div className="mb-4">
           <label

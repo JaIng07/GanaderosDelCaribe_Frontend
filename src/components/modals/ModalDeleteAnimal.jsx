@@ -5,7 +5,7 @@ import { deleteAnimal } from "../../services/animal.services";
 import { useNavigate } from "react-router-dom";
 
 
-const ModalDeleteAnimal = ({ isOpen, onClose, animalToDelete = {}, setReloadAnimal }) => {
+const ModalDeleteAnimal = ({ isOpen, onClose, animalToDelete = {}}) => {
   const { formState } = useForm(animalToDelete);
   const { id } = formState;
   const navigate = useNavigate();
@@ -18,7 +18,6 @@ const ModalDeleteAnimal = ({ isOpen, onClose, animalToDelete = {}, setReloadAnim
 
     const res = await deleteAnimal(id);
     if (res.ok) {
-      setReloadAnimal((prev) => !prev);
       navigate("/dashboard/animal-registration"), 
       onClose();
     }
