@@ -7,7 +7,7 @@ import {
 import UserOne from "../../assets/user-01.png";
 import useDrawer from "../../hooks/useDrawer";
 import DropdownUserOptions from "./DropdownUserOptions";
-import { userOptions } from "../../data/UserOptions";
+import { userOptions } from "../../data/userOptions";
 
 const DropdownUser = () => {
   const navigate = useNavigate();
