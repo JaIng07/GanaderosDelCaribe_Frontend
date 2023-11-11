@@ -36,6 +36,10 @@ function EmployeeRegistration() {
       </div>
        <ModalNewEmployee isOpen={isModalOpen} onClose={closeModal} setReloadDataUsers={setReloadDataUsers} /> 
       {/* <AnimalCards arrAnimals={arrAnimals} /> */}
+
+      
+
+
     </DashboardLayout>
   );
 }
