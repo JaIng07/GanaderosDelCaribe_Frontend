@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import AnimalCards from "../../../components/animalCard/AnimalCards";
+import MembersTable from "../../../components/userList/UserList";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import ModalNewEmployee from "../../../components/modals/ModalNewEmployee";
@@ -35,8 +35,7 @@ function EmployeeRegistration() {
         </div>
       </div>
        <ModalNewEmployee isOpen={isModalOpen} onClose={closeModal} setReloadDataUsers={setReloadDataUsers} /> 
-      {/* <AnimalCards arrAnimals={arrAnimals} /> */}
-
+       <MembersTable/>
       
 
 
