@@ -14,23 +14,26 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataAnimals }) => {
     identificationCard: "",
   });
 
-  const { identificationNumber, race, weight, birthdate, imagenUrl } = formState;
+  const { username, password, email, rol, identificationCard } = formState;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const payload = {
       username:username.trim(),
-      id: new Date().getMilliseconds(),
-      identificationNumber: identificationNumber.trim(),
-      race: race.trim(),
-      weight: weight.trim(),
-      birthdate: birthdate.trim(),
-      imagenUrl: imagenUrl.trim(),
-      animalType: "ganado",
+      password:password.trim(),
+      email:email.trim(),
+      rol:rol(),
+      identificationCard:identificationCard.trim(),
+      //id: new Date().getMilliseconds(),
+      //race: race.trim(),
+      //weight: weight.trim(),
+      //birthdate: birthdate.trim(),
+      //imagenUrl: imagenUrl.trim(),
+     // animalType: "ganado",
     };
 
-    if (!identificationNumber || !race || !weight || !birthdate) return;
+    //if (!identificationNumber || !race || !weight || !birthdate) return;
 
     const res = await createAnimal(payload);
 
@@ -43,18 +46,19 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataAnimals }) => {
     }
   };
 
-  // habilita el boton guardar cuando todos los campos estan llenos
+ // habilita el boton guardar cuando todos los campos estan llenos
   useEffect(() => {
     if (
-      identificationNumber.trim() &&
-      race.trim() &&
-      weight.trim() &&
-      birthdate.trim()
+      username.trim() &&
+      password.trim() &&
+      email.trim() &&
+      rol.trim() && 
+      identificationCard.trim()
     )
       setIsActive(true);
-  }, [identificationNumber, race, weight, birthdate]);
+  }, [username, password, email, rol, identificationCard]);
 
-  
+
   return (
     <ModalLayout
       isOpen={isOpen}
@@ -91,7 +95,7 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataAnimals }) => {
             name="password"
             onChange={onInputChange}
             placeholder="Contraseña"
-            type="passwword"
+            type="password"
             value={password}
           />
         </div>
@@ -109,7 +113,7 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataAnimals }) => {
             name="email"
             onChange={onInputChange}
             placeholder="user@user.com"
-            type="number"
+            type="email"
             value={email}
           />
         </div>
@@ -141,7 +145,7 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataAnimals }) => {
             name="identificationCard"
             onChange={onInputChange}
             placeholder="21313"
-            type="text"
+            type="number"
             value={identificationCard}
           />
         </div>

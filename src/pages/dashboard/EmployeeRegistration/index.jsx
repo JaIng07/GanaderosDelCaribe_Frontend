@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AnimalCards from "../../../components/animalCard/AnimalCards";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import { PlusIcon } from "@heroicons/react/24/outline";
-// import ModalNewEmployee from "../../../components/modals/ModalNewEmployee";
+import ModalNewEmployee from "../../../components/modals/ModalNewEmployee";
 import { getUsers } from "../../../services/user.services";
 
 function EmployeeRegistration() {
@@ -34,7 +34,7 @@ function EmployeeRegistration() {
           <PlusIcon className="h-5 w-5" />
         </div>
       </div>
-      {/* <ModalNewEmployee isOpen={isModalOpen} onClose={closeModal} setReloadDataUsers={setReloadDataUsers} /> */}
+       <ModalNewEmployee isOpen={isModalOpen} onClose={closeModal} setReloadDataUsers={setReloadDataUsers} /> 
       {/* <AnimalCards arrAnimals={arrAnimals} /> */}
     </DashboardLayout>
   );
