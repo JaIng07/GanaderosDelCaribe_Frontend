@@ -2,21 +2,21 @@ import { useEffect, useState } from "react";
 import AnimalCards from "../../../components/animalCard/AnimalCards";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import ModalNewAnimal from "../../../components/modals/ModalNewAnimal";
-import { getAnimals } from "../../../services/animal.services";
+// import ModalNewEmployee from "../../../components/modals/ModalNewEmployee";
+import { getUsers } from "../../../services/user.services";
 
 function EmployeeRegistration() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [reloadDataAnimals, setReloadDataAnimals] = useState(false);
-  const [arrAnimals, setArrAnimals] = useState([]);
+  const [reloadDataUsers, setReloadDataUsers] = useState(false);
+  const [arrUsers, setArrUsers] = useState([]);
 
   useEffect(() => {
-    const getAllAnimals = async () => {
-      const animals = await getAnimals()
-      setArrAnimals(animals.animals)
+    const getAllUsers = async () => {
+      const users = await getUsers()
+      setArrUsers(users.users)
     }
-    getAllAnimals()
-  },[reloadDataAnimals])
+    getAllUsers()
+  },[reloadDataUsers])
 
   const openModal = () => setIsModalOpen(true)
   const closeModal = () => setIsModalOpen(false)
@@ -34,7 +34,7 @@ function EmployeeRegistration() {
           <PlusIcon className="h-5 w-5" />
         </div>
       </div>
-      <ModalNewAnimal isOpen={isModalOpen} onClose={closeModal} setReloadDataAnimals={setReloadDataAnimals} />
+      {/* <ModalNewEmployee isOpen={isModalOpen} onClose={closeModal} setReloadDataUsers={setReloadDataUsers} /> */}
       {/* <AnimalCards arrAnimals={arrAnimals} /> */}
     </DashboardLayout>
   );
