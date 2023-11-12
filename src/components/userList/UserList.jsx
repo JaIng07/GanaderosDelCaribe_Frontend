@@ -5,69 +5,26 @@ import {
   import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
   import {
     Card,
-    CardHeader,
-    Input,
     Typography,
-    Button,
-    CardBody,
     Chip,
-    CardFooter,
-    Tabs,
-    TabsHeader,
-    Tab,
     Avatar,
     IconButton,
     Tooltip,
   } from "@material-tailwind/react";
    
-  const TABS = [
-    {
-      label: "All",
-      value: "all",
-    },
-    {
-      label: "Monitored",
-      value: "monitored",
-    },
-    {
-      label: "Unmonitored",
-      value: "unmonitored",
-    },
-  ];
-   
   const TABLE_HEAD = ["Member", "Function", "Status", "Employed", ""];
    
-  const TABLE_ROWS = [
-    {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-3.jpg",
-      name: "John Michael",
-      email: "john@creative-tim.com",
-      job: "Manager",
-      org: "Organization",
-      online: true,
-      date: "23/04/18",
-    },
-    {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-2.jpg",
-      name: "Alexa Liras",
-      email: "alexa@creative-tim.com",
-      job: "Programator",
-      org: "Developer",
-      online: false,
-      date: "23/04/18",
-    },
-    {
-      img: "https://demos.creative-tim.com/test/corporate-ui-dashboard/assets/img/team-1.jpg",
-      name: "Laurent Perrier",
-      email: "laurent@creative-tim.com",
-      job: "Executive",
-      org: "Projects",
-      online: false,
-      date: "19/09/17",
-    },
-  ];
-   
-  export default function MembersTable() {
+  const MembersTable = ({ arrUsers = [] }) =>{
+
+    if (arrUsers.length === 0)
+    return (
+      <div className="pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-content-stretch">
+        <p className="text-center text-black text-xl font-montserrat font-normal">
+          No hay empleados registrados
+        </p>
+      </div>
+    );
+
     return (
       <Card className="mt-4 h-full w-full border border-4 border-fondo">
           <table className="w-full min-w-max table-auto text-left">
@@ -90,25 +47,25 @@ import {
               </tr>
             </thead>
             <tbody>
-              {TABLE_ROWS.map(
-                ({ img, name, email, job, org, online, date }, index) => {
-                  const isLast = index === TABLE_ROWS.length - 1;
+              {arrUsers.map(
+                ({ id, username, password, email, rol, identificationCard, img,}) => {
+                  const isLast = id === TABLE_ROWS.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-fondo";
    
                   return (
-                    <tr key={name} className="even:bg-fondo">
+                    <tr key={id} className="even:bg-fondo">
                       <td className={classes}>
                         <div className="flex items-center gap-3">
-                          <Avatar src={img} alt={name} size="sm" />
+                          <Avatar src={img} alt={username} size="sm" />
                           <div className="flex flex-col">
                             <Typography
                               variant="small"
                               color="blue-gray"
                               className="font-normal"
                             >
-                              {name}
+                              {username}
                             </Typography>
                             <Typography
                               variant="small"
@@ -127,14 +84,14 @@ import {
                             color="blue-gray"
                             className="font-normal"
                           >
-                            {job}
+                            {rol}
                           </Typography>
                           <Typography
                             variant="small"
                             color="blue-gray"
                             className="font-normal opacity-70"
                           >
-                            {org}
+                            {identificationCard}
                           </Typography>
                         </div>
                       </td>
@@ -143,8 +100,8 @@ import {
                           <Chip
                             variant="ghost"
                             size="sm"
-                            value={online ? "online" : "offline"}
-                            color={online ? "green" : "blue-gray"}
+                            value="online"  // Placeholder value, adjust as needed
+                            color="green"  // Placeholder color, adjust as needed
                           />
                         </div>
                       </td>
@@ -154,7 +111,7 @@ import {
                           color="blue-gray"
                           className="font-normal"
                         >
-                          {date}
+                          23/04/18    {/* Placeholder date, adjust */}
                         </Typography>
                       </td>
                       <td className={classes}>
@@ -173,3 +130,5 @@ import {
       </Card>
     );
   }
+
+  export default MembersTable;

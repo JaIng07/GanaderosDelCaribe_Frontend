@@ -35,7 +35,7 @@ function EmployeeRegistration() {
         </div>
       </div>
        <ModalNewEmployee isOpen={isModalOpen} onClose={closeModal} setReloadDataUsers={setReloadDataUsers} /> 
-       <MembersTable/>
+       <MembersTable arrUsers={arrUsers}/>
       
 
 

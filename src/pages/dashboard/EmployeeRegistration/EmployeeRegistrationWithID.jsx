@@ -74,14 +74,7 @@ const EmployeeRegistrationWithID = () => {
             <PencilSquareIcon className="h-5 w-5" />
           </div>
         </div>
-        {employee.id && (
-          <ModalEditEmployee
-            isOpen={isEditModalOpen}
-            onClose={closeEditModal}
-            employeeToEdit={employee}
-            setReloadEmployee={setReloadEmployee}
-          />
-        )}
+        {employee.id && <ModalEditEmployee isOpen={isEditModalOpen} onClose={closeEditModal} employeeToEdit={employee} setReloadEmployee={setReloadEmployee}/>}
         {employee.id && <ModalDeleteEmployee isOpen={isDeleteModalOpen} onClose={closeDeleteModal} employeeToDelete={employee}/> }
       </div>
     </DashboardLayout>
