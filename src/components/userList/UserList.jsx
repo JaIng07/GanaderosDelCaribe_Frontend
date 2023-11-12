@@ -49,7 +49,7 @@ import {
             <tbody>
               {arrUsers.map(
                 ({ id, username, password, email, rol, identificationCard, img,}) => {
-                  const isLast = id === TABLE_ROWS.length - 1;
+                  const isLast = id === arrUsers.length - 1;
                   const classes = isLast
                     ? "p-4"
                     : "p-4 border-b border-fondo";
