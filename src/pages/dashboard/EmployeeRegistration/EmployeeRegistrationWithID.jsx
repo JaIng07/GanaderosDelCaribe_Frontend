@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
 import DashboardLayout from "../../../layout/DashboardLayout";
+import { getUsers } from "../../../services/user.services";
 //import ModalEditAnimal from "../../../components/modals/ModalEditAnimal";
 //import ModalDeleteAnimal from "../../../components/modals/ModalDeleteAnimal";
 //import {getAnimal} from "../../../services/animal.services";
@@ -32,7 +33,7 @@ const EmployeeRegistrationWithID = () => {
 
   useEffect(() => {
     const obtainEmployeeByID = async () => {
-      const response = await getEmployee(idEmployee);
+      const response = await getUsers(idEmployee);
       setEmployee(response.employee);
     };
     obtainEmployeeByID();

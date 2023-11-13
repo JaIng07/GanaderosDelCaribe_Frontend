@@ -1,10 +1,10 @@
 import ModalLayout from "../../layout/ModalLayout";
 import { useForm } from "../../hooks/useForm";
 import { useEffect, useState } from "react";
-import { createAnimal } from "../../services/animal.services";
+import { createUser } from "../../services/user.services";
 
 // eslint-disable-next-line react/prop-types
-const ModalNewEmployee = ({ isOpen, onClose, setReloadDataAnimals }) => {
+const ModalNewEmployee = ({ isOpen, onClose, setReloadDataUsers }) => {
   const [isActive, setIsActive] = useState(false);
   const { formState, onInputChange, onResetForm } = useForm({
     username: "",
@@ -23,7 +23,7 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataAnimals }) => {
       username:username.trim(),
       password:password.trim(),
       email:email.trim(),
-      rol:rol(),
+      rol:rol,
       identificationCard:identificationCard.trim(),
       //id: new Date().getMilliseconds(),
       //race: race.trim(),
@@ -35,10 +35,10 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataAnimals }) => {
 
     //if (!identificationNumber || !race || !weight || !birthdate) return;
 
-    const res = await createAnimal(payload);
+    const res = await createUser(payload);
 
     if (res.ok) {
-      setReloadDataAnimals(prev=>!prev)
+      setReloadDataUsers(prev=>!prev)
       // cerramos y reseteamos el formulario
       onResetForm();
       setIsActive(false);

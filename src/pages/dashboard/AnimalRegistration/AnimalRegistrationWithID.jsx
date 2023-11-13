@@ -75,6 +75,32 @@ const AnimalRegistrationWithID = () => {
         {animal.id && <ModalEditAnimal isOpen={isEditModalOpen} onClose={closeEditModal} animalToEdit={animal} setReloadAnimal={setReloadAnimal} /> }
         {animal.id && <ModalDeleteAnimal isOpen={isDeleteModalOpen} onClose={closeDeleteModal} animalToDelete={animal}/> }
       </div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-100">
+        <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
+          <img
+            src={animal.imagenUrl}
+            className="w-full h-48 object-cover mb-6 rounded-md"
+          />
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-gray-600 text-sm">Número de Identificación:</p>
+              <p className="text-lg font-medium">{animal.identificationNumber}</p>
+            </div>
+            <div>
+              <p className="text-gray-600 text-sm">Raza:</p>
+              <p className="text-lg font-medium">{animal.race}</p>
+            </div>
+            <div>
+              <p className="text-gray-600 text-sm">Fecha de nacimiento:</p>
+              <p className="text-lg font-medium">{animal.birthdate}</p>
+            </div>
+            <div>
+              <p className="text-gray-600 text-sm">Peso:</p>
+              <p className="text-lg font-medium">{animal.weight} kg</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </DashboardLayout>
   );
 };
