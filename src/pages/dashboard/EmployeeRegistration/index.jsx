@@ -40,7 +40,7 @@ function EmployeeRegistration() {
         </div>
       </div>
        <ModalNewEmployee isOpen={isModalOpen} onClose={closeModal} setReloadDataUsers={setReloadDataUsers} />
-       <MembersTable arrUsers={arrUsers}/>
+       <MembersTable arrUsers={arrUsers} setReloadDataUsers={setReloadDataUsers}/>
     </DashboardLayout>
   );
 }

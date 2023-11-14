@@ -1,10 +1,10 @@
-import React from "react";
 import ModalLayout from "../../layout/ModalLayout";
 import { useForm } from "../../hooks/useForm";
 import { deleteAnimal } from "../../services/animal.services";
 import { useNavigate } from "react-router-dom";
 
 
+// eslint-disable-next-line react/prop-types
 const ModalDeleteAnimal = ({ isOpen, onClose, animalToDelete = {}}) => {
   const { formState } = useForm(animalToDelete);
   const { id } = formState;
