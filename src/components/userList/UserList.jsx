@@ -1,8 +1,4 @@
-import {
-  MagnifyingGlassIcon,
-  ChevronUpDownIcon,
-} from "@heroicons/react/24/outline";
-import { PencilIcon, UserPlusIcon } from "@heroicons/react/24/solid";
+import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
 import {
   Card,
   Typography,
@@ -12,7 +8,7 @@ import {
   Tooltip,
 } from "@material-tailwind/react";
 
-const TABLE_HEAD = ["Member", "Function", "Status", "Employed", ""];
+const TABLE_HEAD = ["Nombre", "Cedula", "Rol", "Contraseña", "acciones"];
 
 // eslint-disable-next-line react/prop-types
 const MembersTable = ({ arrUsers = [] }) => {
@@ -26,10 +22,8 @@ const MembersTable = ({ arrUsers = [] }) => {
       </div>
     );
 
-  console.log(arrUsers)
-
   return (
-    <Card className="mt-4 h-full w-full border border-4 border-fondo">
+    <Card className="mt-4 h-full w-full border border-fondo -z-10">
       <table className="w-full min-w-max table-auto text-left">
         <thead>
           <tr>
@@ -51,7 +45,7 @@ const MembersTable = ({ arrUsers = [] }) => {
         </thead>
         <tbody>
           {arrUsers.map(
-            ({ id, username, password, email, rol, identificationCard, img, }) => {
+            ({ id, username, email, rol, identificationCard }) => {
               const isLast = id === arrUsers.length - 1;
               const classes = isLast
                 ? "p-4"
@@ -61,7 +55,7 @@ const MembersTable = ({ arrUsers = [] }) => {
                 <tr key={id} className="even:bg-fondo">
                   <td className={classes}>
                     <div className="flex items-center gap-3">
-                      <Avatar src={img} alt={username} size="sm" />
+                      <Avatar src={"https://static.thenounproject.com/png/1743561-200.png"} alt={username} size="sm" />
                       <div className="flex flex-col">
                         <Typography
                           variant="small"
@@ -81,30 +75,21 @@ const MembersTable = ({ arrUsers = [] }) => {
                     </div>
                   </td>
                   <td className={classes}>
-                    <div className="flex flex-col">
                       <Typography
                         variant="small"
                         color="blue-gray"
                         className="font-normal"
                       >
-                        {rol}
-                      </Typography>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal opacity-70"
-                      >
                         {identificationCard}
                       </Typography>
-                    </div>
                   </td>
                   <td className={classes}>
                     <div className="w-max">
                       <Chip
                         variant="ghost"
                         size="sm"
-                        value="online"  // Placeholder value, adjust as needed
-                        color="green"  // Placeholder color, adjust as needed
+                        value={rol}
+                        color="green"
                       />
                     </div>
                   </td>
@@ -114,13 +99,13 @@ const MembersTable = ({ arrUsers = [] }) => {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      23/04/18    {/* Placeholder date, adjust */}
+                     *********
                     </Typography>
                   </td>
                   <td className={classes}>
                     <Tooltip content="Edit User">
                       <IconButton variant="text">
-                        <PencilIcon className="h-4 w-4" />
+                        <EllipsisVerticalIcon className="h-6 w-6" />
                       </IconButton>
                     </Tooltip>
                   </td>

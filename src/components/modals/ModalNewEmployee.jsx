@@ -23,14 +23,8 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataUsers }) => {
       username:username.trim(),
       password:password.trim(),
       email:email.trim(),
-      rol:rol,
+      rol:rol.trim(),
       identificationCard:identificationCard.trim(),
-      //id: new Date().getMilliseconds(),
-      //race: race.trim(),
-      //weight: weight.trim(),
-      //birthdate: birthdate.trim(),
-      //imagenUrl: imagenUrl.trim(),
-     // animalType: "ganado",
     };
 
     //if (!identificationNumber || !race || !weight || !birthdate) return;
@@ -52,7 +46,7 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataUsers }) => {
       username.trim() &&
       password.trim() &&
       email.trim() &&
-      rol.trim() && 
+      rol.trim() &&
       identificationCard.trim()
     )
       setIsActive(true);
@@ -100,7 +94,6 @@ const ModalNewEmployee = ({ isOpen, onClose, setReloadDataUsers }) => {
           />
         </div>
 
-        
         <div className="mb-4">
           <label
             htmlFor="email"
