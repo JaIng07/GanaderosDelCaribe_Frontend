@@ -1,30 +1,23 @@
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
-import {
-  Card,
-  Typography,
-  Chip,
-  Avatar,
-} from "@material-tailwind/react";
+import { Card, Typography, Chip, Avatar } from "@material-tailwind/react";
 import ModalEditEmployee from "../modals/ModalEditEmployee";
 import { useState } from "react";
 
-
 // eslint-disable-next-line react/prop-types
-const MembersTable = ({ arrUsers = [], setReloadDataUsers }) => {
-
+const UserList = ({ arrUsers = [], setReloadDataUsers }) => {
   const TABLE_HEAD = ["Nombre", "Cedula", "Rol", "Contraseña", "acciones"];
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [employSelected, setEmploySelected] = useState([])
+  const [employSelected, setEmploySelected] = useState([]);
 
-  const closeEditModal = () => {
-    setIsEditModalOpen(false);
+  const openEditModal = (employee) => {
+    setEmploySelected(employee);
+    setIsEditModalOpen(true);
   };
 
-  const openEditModal = ([employ])=>{
-    setIsEditModalOpen(true)
-    console.log(employ)
-    setEmploySelected(employ)
-  }
+  const closeModal = () => {
+    setEmploySelected(null)
+    setIsEditModalOpen(false)
+  };
 
   if (arrUsers.length === 0)
     return (
@@ -42,10 +35,7 @@ const MembersTable = ({ arrUsers = [], setReloadDataUsers }) => {
           <thead>
             <tr>
               {TABLE_HEAD.map((head) => (
-                <th
-                  key={head}
-                  className="border-blue-gray-100 bg-fondo p-4"
-                >
+                <th key={head} className="border-blue-gray-100 bg-fondo p-4">
                   <Typography
                     variant="small"
                     color="blue-gray"
@@ -58,87 +48,96 @@ const MembersTable = ({ arrUsers = [], setReloadDataUsers }) => {
             </tr>
           </thead>
           <tbody>
-            {arrUsers.map(
-              (employee) => {
-                const isLast = employee.id === arrUsers.length - 1;
-                const classes = isLast
-                  ? "p-4"
-                  : "p-4 border-b border-fondo";
+            {arrUsers.map((employee) => {
+              const isLast = employee.id === arrUsers.length - 1;
+              const classes = isLast ? "p-4" : "p-4 border-b border-fondo";
 
-                return (
-                  <tr key={employee.id} className="even:bg-fondo">
-                    <td className={classes}>
-                      <div className="flex items-center gap-3">
-                        <Avatar src={"https://static.thenounproject.com/png/1743561-200.png"} alt={employee.username} size="sm" />
-                        <div className="flex flex-col">
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal"
-                          >
-                            {employee.username}
-                          </Typography>
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-normal opacity-70"
-                          >
-                            {employee.email}
-                          </Typography>
-                        </div>
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {employee.identificationCard}
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <div className="w-max">
-                        <Chip
-                          variant="ghost"
-                          size="sm"
-                          value={employee.rol}
-                          color="green"
-                        />
-                      </div>
-                    </td>
-                    <td className={classes}>
-                      <Typography
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        *********
-                      </Typography>
-                    </td>
-                    <td className={classes}>
-                      <div className="flex items-center space-x-3">
-                        <button className="border rounded p-1 hover:bg-primary hover:text-black cursor-pointer z-10"
-                          onClick={()=>openEditModal(employee)}
+              return (
+                <tr key={employee.id} className="even:bg-fondo">
+                  <td className={classes}>
+                    <div className="flex items-center gap-3">
+                      <Avatar
+                        src={
+                          "https://static.thenounproject.com/png/1743561-200.png"
+                        }
+                        alt={employee.username}
+                        size="sm"
+                      />
+                      <div className="flex flex-col">
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
                         >
-                          <PencilSquareIcon className="h-5 w-5" />
-                        </button>
-                        <div className="border rounded p-1 hover:bg-red-500 hover:text-white cursor-pointer"
+                          {employee.username}
+                        </Typography>
+                        <Typography
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal opacity-70"
                         >
-                          <TrashIcon className="h-5 w-5" />
-                        </div>
+                          {employee.email}
+                        </Typography>
                       </div>
-                    </td>
-                  </tr>
-                );
-              },
-            )}
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {employee.identificationCard}
+                    </Typography>
+                  </td>
+                  <td className={classes}>
+                    <div className="w-max">
+                      <Chip
+                        variant="ghost"
+                        size="sm"
+                        value={employee.rol}
+                        color="green"
+                      />
+                    </div>
+                  </td>
+                  <td className={classes}>
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      *********
+                    </Typography>
+                  </td>
+                  <td className={+classes}>
+                    <div className="flex items-center space-x-2">
+                      <button
+                        className="border rounded p-1 hover:bg-primary hover:text-white cursor-pointer"
+                        onClick={() => openEditModal(employee)}
+                      >
+                        <PencilSquareIcon className="h-5 w-5" />
+                      </button>
+                      <div className="border rounded p-1 hover:bg-red-500 hover:text-white cursor-pointer">
+                        <TrashIcon className="h-5 w-5" />
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </Card>
-      {employSelected.id &&  <ModalEditEmployee isOpen={isEditModalOpen} onClose={closeEditModal} employeeToEdit={employSelected} setReloadDataUsers={setReloadDataUsers} />}
+      {employSelected?.id && (
+        <ModalEditEmployee
+          isOpen={isEditModalOpen}
+          onClose={closeModal}
+          employeeToEdit={employSelected}
+          setReloadDataUsers={setReloadDataUsers}
+        />
+      )}
     </>
   );
-}
+};
 
-export default MembersTable;
+export default UserList;

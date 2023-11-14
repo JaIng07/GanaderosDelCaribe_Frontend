@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import MembersTable from "../../../components/userList/UserList";
+import UserList from "../../../components/userList/UserList";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import ModalNewEmployee from "../../../components/modals/ModalNewEmployee";
@@ -11,20 +11,16 @@ function EmployeeRegistration() {
   const [arrUsers, setArrUsers] = useState([]);
 
   useEffect(() => {
-    console.log("se ha llamado a la funcion de useEffect")
     const getAllUsers = async () => {
-      let { users } = await getUsers()
-      users = users.sort((a,b)=>a.username.localeCompare(b.username))
-      setArrUsers(users)
-      console.log("se ha guardado los datos en el estado")
-      console.log("los datos son: ", users)
-    }
-    getAllUsers()
-    console.log("se ha terminado el llamado a la funcion de useEffect")
-  },[reloadDataUsers])
+      let { users } = await getUsers();
+      users = users.sort((a, b) => a.username.localeCompare(b.username));
+      setArrUsers(users);
+    };
+    getAllUsers();
+  }, [reloadDataUsers]);
 
-  const openModal = () => setIsModalOpen(true)
-  const closeModal = () => setIsModalOpen(false)
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <DashboardLayout>
@@ -39,8 +35,12 @@ function EmployeeRegistration() {
           <PlusIcon className="h-5 w-5" />
         </div>
       </div>
-       <ModalNewEmployee isOpen={isModalOpen} onClose={closeModal} setReloadDataUsers={setReloadDataUsers} />
-       <MembersTable arrUsers={arrUsers} setReloadDataUsers={setReloadDataUsers}/>
+      <UserList arrUsers={arrUsers} setReloadDataUsers={setReloadDataUsers} />
+      <ModalNewEmployee
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        setReloadDataUsers={setReloadDataUsers}
+      />
     </DashboardLayout>
   );
 }
