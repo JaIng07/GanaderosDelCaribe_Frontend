@@ -1,25 +1,18 @@
 import ModalLayout from "../../layout/ModalLayout";
-import { useForm } from "../../hooks/useForm";
-import { deleteAnimal } from "../../services/animal.services";
-import { useNavigate } from "react-router-dom";
+import { deleteUser } from "../../services/user.services";
 
 
-// eslint-disable-next-line react/prop-types
-const ModalDeleteAnimal = ({ isOpen, onClose, animalToDelete = {}}) => {
-  const { formState } = useForm(animalToDelete);
-  const { id } = formState;
-  const navigate = useNavigate();
+const ModalDeleteEmployee = ({ isOpen, onClose, idToDelete, setReloadDataUsers}) => {
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!id) {
-      return;
-    }
+    if (!idToDelete) return;
 
-    const res = await deleteAnimal(id);
+    const res = await deleteUser(idToDelete);
     if (res.ok) {
-      navigate("/dashboard/animal-registration"), 
-      onClose();
+      onClose()
+      setReloadDataUsers(prev=>!prev)
     }
   };
 
@@ -29,7 +22,7 @@ const ModalDeleteAnimal = ({ isOpen, onClose, animalToDelete = {}}) => {
       <form className="text-black" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block font-light mb-10">
-            ¿Estás seguro que deseas eliminar este animal?
+            ¿Estás seguro que deseas eliminar este empleado?
           </label>
         </div>
 
@@ -53,4 +46,4 @@ const ModalDeleteAnimal = ({ isOpen, onClose, animalToDelete = {}}) => {
   );
 };
 
-export default ModalDeleteAnimal;
+export default ModalDeleteEmployee;
