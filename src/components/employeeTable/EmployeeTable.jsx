@@ -2,22 +2,14 @@ import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import { Card, Typography, Chip, Avatar } from "@material-tailwind/react";
 import ModalEditEmployee from "../modals/ModalEditEmployee";
 import { useState } from "react";
+import ModalDeleteEmployee from "../modals/ModelDeleteEmployee";
 
-// eslint-disable-next-line react/prop-types
-const UserList = ({ arrUsers = [], setReloadDataUsers }) => {
+const EmployeeTable = ({ arrUsers = [], setReloadDataUsers }) => {
+
   const TABLE_HEAD = ["Nombre", "Cedula", "Rol", "Contraseña", "acciones"];
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [employSelected, setEmploySelected] = useState([]);
+  const [idToDelete, setIdToDelete] = useState(null);
 
-  const openEditModal = (employee) => {
-    setEmploySelected(employee);
-    setIsEditModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setEmploySelected(null)
-    setIsEditModalOpen(false)
-  };
 
   if (arrUsers.length === 0)
     return (
@@ -49,12 +41,9 @@ const UserList = ({ arrUsers = [], setReloadDataUsers }) => {
           </thead>
           <tbody>
             {arrUsers.map((employee) => {
-              const isLast = employee.id === arrUsers.length - 1;
-              const classes = isLast ? "p-4" : "p-4 border-b border-fondo";
-
               return (
                 <tr key={employee.id} className="even:bg-fondo">
-                  <td className={classes}>
+                  <td className="p-4 border-b border-fondo">
                     <div className="flex items-center gap-3">
                       <Avatar
                         src={
@@ -81,7 +70,7 @@ const UserList = ({ arrUsers = [], setReloadDataUsers }) => {
                       </div>
                     </div>
                   </td>
-                  <td className={classes}>
+                  <td className="p-4 border-b border-fondo">
                     <Typography
                       variant="small"
                       color="blue-gray"
@@ -90,7 +79,7 @@ const UserList = ({ arrUsers = [], setReloadDataUsers }) => {
                       {employee.identificationCard}
                     </Typography>
                   </td>
-                  <td className={classes}>
+                  <td className="p-4 border-b border-fondo">
                     <div className="w-max">
                       <Chip
                         variant="ghost"
@@ -100,7 +89,7 @@ const UserList = ({ arrUsers = [], setReloadDataUsers }) => {
                       />
                     </div>
                   </td>
-                  <td className={classes}>
+                  <td className="p-4 border-b border-fondo">
                     <Typography
                       variant="small"
                       color="blue-gray"
@@ -109,15 +98,18 @@ const UserList = ({ arrUsers = [], setReloadDataUsers }) => {
                       *********
                     </Typography>
                   </td>
-                  <td className={+classes}>
+                  <td className="p-4 border-b border-fondo">
                     <div className="flex items-center space-x-2">
                       <button
                         className="border rounded p-1 hover:bg-primary hover:text-white cursor-pointer"
-                        onClick={() => openEditModal(employee)}
+                        onClick={() => setEmploySelected(employee)}
                       >
                         <PencilSquareIcon className="h-5 w-5" />
                       </button>
-                      <div className="border rounded p-1 hover:bg-red-500 hover:text-white cursor-pointer">
+                      <div
+                        className="border rounded p-1 hover:bg-red-500 hover:text-white cursor-pointer"
+                        onClick={() => setIdToDelete(employee.id)}
+                      >
                         <TrashIcon className="h-5 w-5" />
                       </div>
                     </div>
@@ -130,9 +122,17 @@ const UserList = ({ arrUsers = [], setReloadDataUsers }) => {
       </Card>
       {employSelected?.id && (
         <ModalEditEmployee
-          isOpen={isEditModalOpen}
-          onClose={closeModal}
+          isOpen={employSelected}
+          onClose={() => setEmploySelected(null)}
           employeeToEdit={employSelected}
+          setReloadDataUsers={setReloadDataUsers}
+        />
+      )}
+      {idToDelete && (
+        <ModalDeleteEmployee
+          isOpen={idToDelete}
+          onClose={() => setIdToDelete(null)}
+          idToDelete={idToDelete}
           setReloadDataUsers={setReloadDataUsers}
         />
       )}
@@ -140,4 +140,4 @@ const UserList = ({ arrUsers = [], setReloadDataUsers }) => {
   );
 };
 
-export default UserList;
+export default EmployeeTable;

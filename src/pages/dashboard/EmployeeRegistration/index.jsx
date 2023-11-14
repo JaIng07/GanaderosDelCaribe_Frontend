@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import UserList from "../../../components/userList/UserList";
+import EmployeeTable from "../../../components/employeeTable/EmployeeTable";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import { PlusIcon } from "@heroicons/react/24/outline";
 import ModalNewEmployee from "../../../components/modals/ModalNewEmployee";
@@ -35,7 +35,7 @@ function EmployeeRegistration() {
           <PlusIcon className="h-5 w-5" />
         </div>
       </div>
-      <UserList arrUsers={arrUsers} setReloadDataUsers={setReloadDataUsers} />
+      <EmployeeTable arrUsers={arrUsers} setReloadDataUsers={setReloadDataUsers} />
       <ModalNewEmployee
         isOpen={isModalOpen}
         onClose={closeModal}

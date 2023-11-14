@@ -49,7 +49,7 @@ const ModalEditEmployee = ({
             className="w-full border rounded-md py-2 px-3"
             name="username"
             onChange={onInputChange}
-            placeholder="ElPepe"
+            placeholder="Nombre y apellido"
             type="text"
             defaultValue={username}
           />
@@ -65,7 +65,7 @@ const ModalEditEmployee = ({
             className="w-full border rounded-md py-2 px-3"
             name="password"
             onChange={onInputChange}
-            placeholder="UnaContraseña123"
+            placeholder="tu contraseña"
             type="password"
             defaultValue={password}
           />
