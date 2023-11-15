@@ -16,3 +16,7 @@ export function tokenHasExpired (token) {
 export const removeToken = () => {
   localStorage.removeItem("ganadero-token")
 }
+
+export const getToken = () => {
+  return localStorage.getItem("ganadero-token")
+}

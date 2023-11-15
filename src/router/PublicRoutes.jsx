@@ -1,12 +1,7 @@
-import { Navigate } from "react-router-dom"
+import { Navigate } from "react-router-dom";
+import { getToken } from "../helpers/JWT";
 
-const PublicRoutes = ({ children }) => {
+const PublicRoutes = ({ children }) =>
+  getToken() ? <Navigate to="/dashboard/animal-registration" /> : children;
 
-  const token = localStorage.getItem("ganadero-token")
-  console.log(token)
-
-  return (token)  ? <Navigate to="/dashboard/animal-registration" /> : children
-
-}
-
-export default PublicRoutes
+export default PublicRoutes;

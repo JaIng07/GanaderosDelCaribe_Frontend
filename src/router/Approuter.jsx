@@ -7,6 +7,7 @@ import IndexEmployeeRegistration from '../pages/dashboard/EmployeeRegistration/i
 import AnimalRegistrationWithID from "../pages/dashboard/AnimalRegistration/AnimalRegistrationWithID";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
+import ActivityRegister from "../pages/dashboard/ActivityRegister:/ActivityRegister";
 
 const roles = {
   ADMIN: "admin",
@@ -35,6 +36,10 @@ const Approuter = createBrowserRouter([
   {
     path: "/dashboard/employee-registration",
     element: <PrivateRoutes rol={roles.ADMIN}><IndexEmployeeRegistration /></PrivateRoutes>
+  },
+  {
+    path: "/dashboard/activity-register",
+    element:  <PrivateRoutes rol={roles.EMPLOYEE}><ActivityRegister /></PrivateRoutes>
   }
 ]);
 

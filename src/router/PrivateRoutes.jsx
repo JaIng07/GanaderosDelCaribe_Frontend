@@ -1,9 +1,9 @@
-import { decodedToken } from "../helpers/JWT"
+import { decodedToken, getToken } from "../helpers/JWT"
 import { Navigate } from 'react-router-dom'
 
 const PrivateRoutes = ({ children , rol }) => {
 
-  const token = localStorage.getItem("ganadero-token")
+  const token = getToken()
 
   if(!token) return <Navigate to="/auth" />
 
