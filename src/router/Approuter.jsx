@@ -1,10 +1,18 @@
 import Landingpage from "../pages/Landingpage";
 import { createBrowserRouter } from "react-router-dom";
-import { Login, Register } from "../pages/auth";
+import Login from "../pages/auth/Login";
 import Page404 from "../components/page404/Page404";
 import IndexAnimalRegistration from "../pages/dashboard/AnimalRegistration/index";
 import IndexEmployeeRegistration from '../pages/dashboard/EmployeeRegistration/index'
 import AnimalRegistrationWithID from "../pages/dashboard/AnimalRegistration/AnimalRegistrationWithID";
+import PrivateRoutes from "./PrivateRoutes";
+import PublicRoutes from "./PublicRoutes";
+
+const roles = {
+  ADMIN: "admin",
+  EMPLOYEE: "employee",
+  ANY: ["admin", "employee"]
+};
 
 const Approuter = createBrowserRouter([
   {
@@ -14,23 +22,19 @@ const Approuter = createBrowserRouter([
   },
   {
     path: "/auth/login",
-    element: <Login />,
-  },
-  {
-    path: "/auth/register",
-    element: <Register />,
+    element: <PublicRoutes><Login /></PublicRoutes>,
   },
   {
     path: "/dashboard/animal-registration",
-    element: <IndexAnimalRegistration />,
+    element: <PrivateRoutes rol={roles.ANY}><IndexAnimalRegistration /></PrivateRoutes>,
   },
   {
     path: "/dashboard/animal-registration/:idAnimal",
-    element: <AnimalRegistrationWithID />,
+    element: <PrivateRoutes rol={roles.ANY}><AnimalRegistrationWithID /></PrivateRoutes>
   },
   {
     path: "/dashboard/employee-registration",
-    element: <IndexEmployeeRegistration />,
+    element: <PrivateRoutes rol={roles.ADMIN}><IndexEmployeeRegistration /></PrivateRoutes>
   }
 ]);
 

@@ -1,10 +1,23 @@
 import axios from 'axios'
 import SnackbarUtils from '../common/snackAlertBar/SnackAlertBar'
 
+export const baseUrl = "https://ganaderosbackend.onrender.com/api"
+
 export const AxiosInterceptor = () => {
-  axios.interceptors.request.use((req) => {
-    //console.log('request interceptor', req)
+
+  const updateHeader = (req) => {
+    const token = localStorage.getItem('ganadero-token')
+    const newHeaders = {
+      'ganadero-token': token,
+      'Content-Type': 'application/json'
+    }
+    req.headers = newHeaders
     return req
+  }
+
+
+  axios.interceptors.request.use((req) => {
+    return updateHeader(req)
   })
 
   axios.interceptors.response.use(
