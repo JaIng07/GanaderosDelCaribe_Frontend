@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
-import Column from "../../../components/DragAndDrop/Column";
+import Column from "../../../components/dragAndDrop/Column";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import { getActivities } from "../../../services/activity.services";
 import { decodedToken, getToken } from "../../../helpers/JWT";
