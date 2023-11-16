@@ -1,15 +1,18 @@
-import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import {
+  TrashIcon,
+  PencilSquareIcon,
+} from "@heroicons/react/24/solid";
 import { Card, Typography, Chip, Avatar } from "@material-tailwind/react";
 import ModalEditEmployee from "../modals/ModalEditEmployee";
 import { useState } from "react";
 import ModalDeleteEmployee from "../modals/ModelDeleteEmployee";
+import { Link } from "react-router-dom";
+import { TableCellsIcon } from "@heroicons/react/24/outline";
 
 const EmployeeTable = ({ arrUsers = [], setReloadDataUsers }) => {
-
-  const TABLE_HEAD = ["Nombre", "Cedula", "Rol", "Contraseña", "acciones"];
+  const TABLE_HEAD = ["Nombre", "Cedula", "Rol", "acciones"];
   const [employSelected, setEmploySelected] = useState([]);
   const [idToDelete, setIdToDelete] = useState(null);
-
 
   if (arrUsers.length === 0)
     return (
@@ -84,19 +87,10 @@ const EmployeeTable = ({ arrUsers = [], setReloadDataUsers }) => {
                       <Chip
                         variant="ghost"
                         size="sm"
-                        value={employee.rol}
-                        color="green"
+                        value={employee.rol === "admin" ? "Administrador" : "Empleado"}
+                        color={`${ employee.rol === "admin" ? "blue" : "green" }`}
                       />
                     </div>
-                  </td>
-                  <td className="p-4 border-b border-fondo">
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal"
-                    >
-                      *********
-                    </Typography>
                   </td>
                   <td className="p-4 border-b border-fondo">
                     <div className="flex items-center space-x-2">
@@ -112,6 +106,12 @@ const EmployeeTable = ({ arrUsers = [], setReloadDataUsers }) => {
                       >
                         <TrashIcon className="h-5 w-5" />
                       </div>
+                      <Link to={`/dashboard/activity-register/${employee.id}`}>
+                        <div className="border rounded p-1 hover:bg-orange-400 hover:text-white cursor-pointer text-sm flex flex-row">
+                          <TableCellsIcon className="h-5 w-7 pr-2" />
+                          Asignar Actividad
+                        </div>
+                      </Link>
                     </div>
                   </td>
                 </tr>

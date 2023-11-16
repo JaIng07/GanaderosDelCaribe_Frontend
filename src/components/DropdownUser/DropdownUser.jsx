@@ -8,6 +8,7 @@ import UserOne from "../../assets/user-01.png";
 import useDrawer from "../../hooks/useDrawer";
 import DropdownUserOptions from "./DropdownUserOptions";
 import { userOptions } from "../../data/userOptions";
+import { removeToken } from "../../helpers/JWT";
 
 const DropdownUser = () => {
   const navigate = useNavigate();
@@ -15,8 +16,8 @@ const DropdownUser = () => {
   const { drawerOpen, setDrawerOpen, trigger, drawer } = useDrawer();
 
   const signOut = () => {
-    console.log("signOut");
     navigate("/auth/login");
+    removeToken()
   };
 
   return (

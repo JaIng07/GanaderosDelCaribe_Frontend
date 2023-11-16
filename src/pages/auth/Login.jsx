@@ -1,16 +1,29 @@
 import { useNavigate } from "react-router-dom";
-import FooterAuth from "../../components/footerAuth/FooterAuth";
 import AuthLayout from "../../layout/AuthLayout";
+import { useForm } from "../../hooks/useForm";
+import { authenticate } from "../../services/auth.services";
 
 function Login() {
 
   const navigate = useNavigate();
 
+  const { email, password, onInputChange, onResetForm } = useForm({
+    email: "",
+    password: "",
+  })
 
-  const handleSubmit = (e) => {
+
+  const handleSubmit = async(e) => {
     e.preventDefault();
-    console.log("Formulario enviado");
-    navigate("/dashboard/animal-registration")
+
+    if(email === "" || password === "") return
+
+    const res = await authenticate({email,password})
+    if(res.ok){
+      onResetForm()
+      localStorage.setItem("ganadero-token",res.token)
+      navigate("/dashboard/animal-registration")
+    }
   };
 
   return (
@@ -24,6 +37,8 @@ function Login() {
             type="email"
             name="email"
             id="email"
+            value={email}
+            onChange={onInputChange}
             placeholder="usuario@correo.com"
             className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-primary  focus:ring-primary  focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -37,6 +52,8 @@ function Login() {
             type="password"
             name="password"
             id="password"
+            value={password}
+            onChange={onInputChange}
             placeholder="********"
             className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg   focus:border-primary  focus:ring-primary  focus:outline-none focus:ring focus:ring-opacity-40"
           />
@@ -48,12 +65,6 @@ function Login() {
           </button>
         </div>
       </form>
-
-      <FooterAuth
-        text="No tienes una cuenta?"
-        wordlink="Registrate"
-        path="/auth/register"
-      />
     </AuthLayout>
   );
 }
