@@ -8,6 +8,7 @@ import AnimalRegistrationWithID from "../pages/dashboard/AnimalRegistration/Anim
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
 import ActivityRegister from "../pages/dashboard/ActivityRegister:/ActivityRegister";
+import ActivityRegisterAdmin from "../pages/dashboard/ActivityRegister:/ActivityRegisterAdmin";
 
 const roles = {
   ADMIN: "admin",
@@ -39,7 +40,11 @@ const Approuter = createBrowserRouter([
   },
   {
     path: "/dashboard/activity-register",
-    element:  <PrivateRoutes rol={roles.EMPLOYEE}><ActivityRegister /></PrivateRoutes>
+    element:  <PrivateRoutes rol={roles.ANY}><ActivityRegister /></PrivateRoutes>
+  },
+  {
+    path: "/dashboard/activity-register/:idUser",
+    element:  <PrivateRoutes rol={roles.ADMIN}><ActivityRegisterAdmin /></PrivateRoutes>
   }
 ]);
 

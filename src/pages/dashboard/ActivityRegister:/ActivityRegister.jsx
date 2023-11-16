@@ -48,25 +48,28 @@ const onDragEnd = async(result, columns, setColumns, setReloadData ) => {
     setReloadData(prev=>!prev)
   }
 
-
 };
 
-const ActivityRegister = () => {
+const ActivityRegister = ({ idUser, children, reloadDataAdmin }) => {
   const [columns, setColumns] = useState([]);
   const [hasActivity, setHasActivity] = useState(0);
   const [reloadData, setReloadData] = useState(false);
 
   useEffect(() => {
     const getDatas = async () => {
-      const token = getToken();
-      const { id } = decodedToken(token);
-      const activities = await getActivities(id);
+      let activityUserId = idUser
+      if(!activityUserId){
+        const token = getToken();
+        const { id } = decodedToken(token);
+        activityUserId = id
+      }
+      const activities = await getActivities(activityUserId);
       const cant = activities.cantActivity;
       setHasActivity(cant);
       if (activities.ok) setColumns(activities.activity);
     };
     getDatas();
-  }, [reloadData]);
+  }, [reloadData, reloadDataAdmin, idUser]);
 
   if (!hasActivity) {
     return (
@@ -75,6 +78,7 @@ const ActivityRegister = () => {
           <p className="text-base font-montserrat font-normal md:text-xl">
             Panel de actividades
           </p>
+          {children}
         </div>
         <div className="min-h-screen flex items-center justify-center">
           <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
@@ -93,6 +97,7 @@ const ActivityRegister = () => {
         <p className="text-base font-montserrat font-normal md:text-xl">
           Panel de actividades
         </p>
+        {children}
       </div>
       <div className="flex justify-center h-full">
         <DragDropContext
