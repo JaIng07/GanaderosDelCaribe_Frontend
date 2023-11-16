@@ -11,18 +11,19 @@ function TaskCard({ item, index }) {
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
-          className="bg-white rounded-lg shadow-md p-4 max-w-sm mx-auto mb-5"
+          className="bg-white rounded-lg shadow-md p-4 pb-2 max-w-sm mx-auto mb-5"
         >
-          <div className="flex">
+          <div className="flex items-center p-2">
             <img
-              className="w-10 h-10 rounded-full mr-4"
-              src="https://cdn.icon-icons.com/icons2/1830/PNG/512/checklist-115859_115810.png"
+              className="w-10 h-10 mr-4"
+              src="https://static.vecteezy.com/system/resources/previews/015/130/441/original/task-user-icon-png.png"
               alt="Icono tarea"
             />
-            <div>
-              <h3 className="font-bold text-lg">{item.title}</h3>
-              <p className="text-gray-600">{item.description}</p>
-            </div>
+              <h3 className="font-bold text-sm">{item.title}</h3>
+          </div>
+          <div className="grid grid-cols-1 divide-y">
+            <p className="text-gray-800 text-sm pb-3">{item.description}</p>
+            <p className="text-gray-600 italic text-sm pt-1">{item.date}</p>
           </div>
         </div>
       )}

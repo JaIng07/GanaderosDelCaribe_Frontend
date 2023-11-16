@@ -1,7 +1,7 @@
 import axios from 'axios'
 import SnackbarUtils from '../common/snackAlertBar/SnackAlertBar'
 
-export const baseUrl = "https://ganaderosbackend.onrender.com/api"
+export const baseUrl = "http://localhost:8080/api"
 
 export const AxiosInterceptor = () => {
 

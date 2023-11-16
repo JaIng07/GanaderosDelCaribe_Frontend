@@ -31,7 +31,7 @@ export const status = {
   },
 
   done: {
-    name: 'Tareas completadas',
+    name: 'Tareas finalizadas',
     items: [
       {
         id: '6',
