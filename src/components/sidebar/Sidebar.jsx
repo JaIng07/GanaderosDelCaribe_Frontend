@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
 import SidebarItems from "./SidebarItems";
-import { sidebarItems } from "../../data/sidebarItems";
+import { sidebarItemsADMIN, sidebarItemsUSER } from "../../data/sidebarItems";
 import { XMarkIcon } from "@heroicons/react/24/outline";
+import { decodedToken, getToken } from "../../helpers/JWT";
 
 // eslint-disable-next-line react/prop-types
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+
   const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
   const [sidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
@@ -18,6 +20,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       document.querySelector("body")?.classList.remove("sidebar-expanded");
     }
   }, [sidebarExpanded]);
+
+  const getSideBarItems = () => {
+    const token = getToken()
+    const { role } = decodedToken(token)
+    return ( role === 'admin' ) ? sidebarItemsADMIN : sidebarItemsUSER
+
+  }
 
   return (
     <aside
@@ -40,7 +49,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
         <nav className=" py-4 px-4 lg:mt-9 lg:px-6">
           <div>
             <h3 className="mb-4 ml-4 text-sm font-montserrat font-normal ">MENU</h3>
-            <SidebarItems items={sidebarItems} />
+            <SidebarItems items={getSideBarItems()} />
           </div>
         </nav>
       </div>

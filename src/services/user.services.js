@@ -1,6 +1,7 @@
 import axios from 'axios'
+import { baseUrl } from './axios.interceptor'
 
-const BASE_URL_WITH_USER = import.meta.env.VITE_BASE_URL_API + '/user/'
+const BASE_URL_WITH_USER = baseUrl + '/user/'
 
 export const getUsers = async () => {
   return await axios.get(BASE_URL_WITH_USER)
