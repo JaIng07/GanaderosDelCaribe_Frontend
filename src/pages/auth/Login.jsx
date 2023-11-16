@@ -16,7 +16,7 @@ function Login() {
   const handleSubmit = async(e) => {
     e.preventDefault();
 
-    if(email === "" || password === "")return
+    if(email === "" || password === "") return
 
     const res = await authenticate({email,password})
     if(res.ok){
