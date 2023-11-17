@@ -7,8 +7,8 @@ import IndexEmployeeRegistration from '../pages/dashboard/EmployeeRegistration/i
 import AnimalRegistrationWithID from "../pages/dashboard/AnimalRegistration/AnimalRegistrationWithID";
 import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
-import ActivityRegister from "../pages/dashboard/ActivityRegister:/ActivityRegister";
-import ActivityRegisterAdmin from "../pages/dashboard/ActivityRegister:/ActivityRegisterAdmin";
+import ActivityRegister from "../pages/dashboard/ActivityRegister/ActivityRegister";
+import ActivityRegisterAdmin from "../pages/dashboard/ActivityRegister/ActivityRegisterAdmin";
 
 const roles = {
   ADMIN: "admin",
