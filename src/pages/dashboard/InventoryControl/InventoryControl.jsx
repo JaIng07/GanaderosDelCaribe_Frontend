@@ -2,24 +2,23 @@ import { useEffect, useState } from "react";
 import InventoryTable from "../../../components/inventoryTable/InventoryTable";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import ModalNewItem from "../../../components/modals/ModalNewEmployee";
-                                                 // reemplazar Employee por item
-import { getUsers } from "../../../services/user.services";
-                                                //reemplazar user.services por item.services
 
-function EmployeeRegistration() {
+import ModalNewItem from "../../../components/modals/ModalNewItem"; // reemplazar Employee por item
+import { getInventory } from "../../../services/inventory.services";
+
+function InventoryControl() {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [reloadDataUsers, setReloadDataUsers] = useState(false);
-  const [arrUsers, setArrUsers] = useState([]);
+  const [reloadData, setReloadData] = useState(false);
+  const [arrItems, setItems] = useState([]);
 
   useEffect(() => {
     const getAllUsers = async () => {
-      let { users } = await getUsers();
-      users = users.sort((a, b) => a.username.localeCompare(b.username));
-      setArrUsers(users);
-    };  
+      let { inventory } = await getInventory();
+      console.log(inventory)
+      setItems(inventory);
+    };
     getAllUsers();
-  }, [reloadDataUsers]);
+  }, [reloadData]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -37,14 +36,17 @@ function EmployeeRegistration() {
           <PlusIcon className="h-5 w-5" />
         </div>
       </div>
-      <InventoryTable arrUsers={arrUsers} setReloadDataUsers={setReloadDataUsers} />
+      <InventoryTable
+        arrItems={arrItems}
+        setReloadData={setReloadData}
+      />
       <ModalNewItem
         isOpen={isModalOpen}
         onClose={closeModal}
-        setReloadDataUsers={setReloadDataUsers}
+        setReloadData={setReloadData}
       />
     </DashboardLayout>
   );
 }
 
-export default EmployeeRegistration;
+export default InventoryControl;

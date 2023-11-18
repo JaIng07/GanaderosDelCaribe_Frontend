@@ -1,37 +1,33 @@
 import ModalLayout from "../../layout/ModalLayout";
 import { useForm } from "../../hooks/useForm";
 import { useEffect, useState } from "react";
-import { createItem } from "../../services/item.services";
+import { createItemIventory } from "../../services/inventory.services";
 
 // eslint-disable-next-line react/prop-types
-const ModalNewItem = ({ isOpen, onClose, setReloadDataItems }) => {
+const ModalNewItem = ({ isOpen, onClose, setReloadData }) => {
   const [isActive, setIsActive] = useState(false);
   const { formState, onInputChange, onResetForm } = useForm({
-    nombre: "",
-    cantidad: "",
-    tipo: "",
-    descripcion: "",
+    name: "",
+    amount: "",
+    type: "",
+    description: "",
   });
-  const { nombre, cantidad, tipo, descripcion } = formState;
-  const { username, password, email, rol, identificationCard } = formState;
+  const { name, amount, type, description } = formState;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const payload = {
-      nombre:nombre.trim(),
-      cantidad:cantidad.trim(),
-      tipo:tipo.trim(),
-      descripcion:descripcion.trim(),
+      name: name.trim(),
+      amount: amount.trim(),
+      type: type.trim(),
+      description: description.trim(),
     };
 
-    //if (!identificationNumber || !race || !weight || !birthdate) return;
-
-    const res = await createItem(payload);
+    const res = await createItemIventory(payload);
 
     if (res.ok) {
-      setReloadDataItems(prev=>!prev)
-      // cerramos y reseteamos el formulario
+      setReloadData(prev=>!prev)
       onResetForm();
       setIsActive(false);
       onClose();
@@ -41,13 +37,13 @@ const ModalNewItem = ({ isOpen, onClose, setReloadDataItems }) => {
  // habilita el boton guardar cuando todos los campos estan llenos
   useEffect(() => {
     if (
-      nombre.trim() &&
-      cantidad.trim() &&
-      tipo.trim() &&
-      descripcion.trim()
+      name.trim() &&
+      amount.trim() &&
+      type.trim() &&
+      description.trim()
     )
       setIsActive(true);
-  }, [nombre, cantidad, tipo, descripcion]);
+  }, [name, amount, type, description]);
 
 
   return (
@@ -59,7 +55,6 @@ const ModalNewItem = ({ isOpen, onClose, setReloadDataItems }) => {
       <form className="text-black" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label
-            htmlFor="name"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
             Nombre
@@ -70,24 +65,23 @@ const ModalNewItem = ({ isOpen, onClose, setReloadDataItems }) => {
             onChange={onInputChange}
             placeholder="nombre del objeto"
             type="text"
-            value={nombre}
+            value={name}
           />
         </div>
 
         <div className="mb-4">
           <label
-            htmlFor="cantidad"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
             Cantidad
           </label>
           <input
             className="w-full border rounded-md py-2 px-3"
-            name="cantidad"
+            name="amount"
             onChange={onInputChange}
             placeholder="20"
             type="number"
-            value={cantidad}
+            value={amount}
           />
         </div>
 
@@ -96,15 +90,15 @@ const ModalNewItem = ({ isOpen, onClose, setReloadDataItems }) => {
             htmlFor="email"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Email
+            Tipo
           </label>
           <input
             className="w-full border rounded-md py-2 px-3"
-            name="tipo"
+            name="type"
             onChange={onInputChange}
-            placeholder="suministro"
+            placeholder="suministros | medicamentos | equipos | otros"
             type="text"
-            value={tipo}
+            value={type}
           />
         </div>
         <div className="mb-4">
@@ -112,15 +106,16 @@ const ModalNewItem = ({ isOpen, onClose, setReloadDataItems }) => {
             htmlFor="descripcion"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
-            Descripcion
+            description
           </label>
-          <input
+          <textarea
             className="w-full border rounded-md py-2 px-3"
-            name="descripcion"
+            name="description"
             onChange={onInputChange}
-            placeholder="martillo roto"
+            cols={50}
+            placeholder="descripcion del objeto"
             type="text"
-            value={descripcion}
+            value={description}
           />
         </div>
         <button

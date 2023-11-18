@@ -1,26 +1,36 @@
-import {
-  TrashIcon,
-  PencilSquareIcon,
-} from "@heroicons/react/24/solid";
-import { Card, Typography, Chip, Avatar } from "@material-tailwind/react";
-import ModalEditItem from "../modals/ModalEditEmployee";
-import ModalDeleteItem from "../modals/ModelDeleteEmployee";
-                              // reemplazar Employee por item
+import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
+import { Card, Typography, Chip } from "@material-tailwind/react";
+import ModalEditItem from "../modals/ModalNewItem"; // reemplazar Employee por item
+import ModalDeleteItem from "../modals/ModelDeleteEmployee"; // reemplazar Employee por item
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { TableCellsIcon } from "@heroicons/react/24/outline";
 
-const EmployeeTable = ({ arrUsers = [], setReloadDataUsers }) => {
-  const TABLE_HEAD = ["ID","Nombre", "Cantidad", "Tipo", "Descripción", "Acciones"];
+const EmployeeTable = ({ arrItems = [], setReloadData }) => {
+
+  const TABLE_HEAD = ["Nombre", "Cantidad", "Tipo", "Descripción", "Acciones"];
   const [itemSelected, setItemSelected] = useState([]);
   const [idToDelete, setIdToDelete] = useState(null);
 
-  if (arrUsers.length === 0)
+  const getColorItem = (type) => {
+    switch (type) {
+      case "suministros":
+        return "green";
+      case "medicamentos":
+        return "blue";
+      case "equipos":
+        return "red";
+      case "otros":
+        return "gray";
+    }
+  };
+
+  if (arrItems.length === 0)
     return (
-      <div className="pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-content-stretch">
-        <p className="text-center text-black text-xl font-montserrat font-normal">
-          No hay empleados registrados
-        </p>
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="bg-white rounded-lg shadow-md p-8 max-w-lg w-full">
+          <h2 className="text-2xl font-semibold mb-4">
+            No se han encontrado items
+          </h2>
+        </div>
       </div>
     );
 
@@ -44,33 +54,19 @@ const EmployeeTable = ({ arrUsers = [], setReloadDataUsers }) => {
             </tr>
           </thead>
           <tbody>
-            {arrUsers.map((employee) => {
+            {arrItems.map((item) => {
               return (
-                <tr key={employee.id} className="even:bg-fondo">
+                <tr key={item.id} className="even:bg-fondo">
                   <td className="p-4 border-b border-fondo">
                     <div className="flex items-center gap-3">
-                      {/* <Avatar
-                        src={
-                          "https://static.thenounproject.com/png/1743561-200.png"
-                        }
-                        alt={employee.username}
-                        size="sm"
-                      /> */}
                       <div className="flex flex-col">
                         <Typography
                           variant="small"
                           color="blue-gray"
                           className="font-normal"
                         >
-                          {employee.identificationCard}
+                          {item.name}
                         </Typography>
-                        {/* <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal opacity-70"
-                        >
-                          {employee.email}
-                        </Typography> */}
                       </div>
                     </div>
                   </td>
@@ -80,36 +76,39 @@ const EmployeeTable = ({ arrUsers = [], setReloadDataUsers }) => {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {employee.username}
+                      {item.amount}
                     </Typography>
-                  </td>
-                  <td className="p-4 border-b border-fondo">
-                    1
                   </td>
                   <td className="p-4 border-b border-fondo">
                     <div className="w-max">
                       <Chip
                         variant="ghost"
                         size="sm"
-                        value={employee.rol === "admin" ? "Administrador" : "Empleado"}
-                        color={`${ employee.rol === "admin" ? "blue" : "green" }`}
+                        value={item.type}
+                        color={getColorItem(item.type)}
                       />
                     </div>
                   </td>
                   <td className="p-4 border-b border-fondo">
-                      placeholder escriban aca
+                    <Typography
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal"
+                    >
+                      {item.description}
+                    </Typography>
                   </td>
                   <td className="p-4 border-b border-fondo">
                     <div className="flex items-center space-x-2">
                       <button
                         className="border rounded p-1 hover:bg-primary hover:text-white cursor-pointer"
-                        onClick={() => setEmploySelected(employee)}
+                        onClick={() => setItemSelected(item.id)}
                       >
                         <PencilSquareIcon className="h-5 w-5" />
                       </button>
                       <div
                         className="border rounded p-1 hover:bg-red-500 hover:text-white cursor-pointer"
-                        onClick={() => setIdToDelete(employee.id)}
+                        onClick={() => setIdToDelete(item.id)}
                       >
                         <TrashIcon className="h-5 w-5" />
                       </div>
@@ -126,7 +125,7 @@ const EmployeeTable = ({ arrUsers = [], setReloadDataUsers }) => {
           isOpen={itemSelected}
           onClose={() => setItemSelected(null)}
           itemToEdit={itemSelected}
-          setReloadDataUsers={setReloadDataUsers}
+          setReloadData={setReloadData}
         />
       )}
       {idToDelete && (
@@ -134,7 +133,7 @@ const EmployeeTable = ({ arrUsers = [], setReloadDataUsers }) => {
           isOpen={idToDelete}
           onClose={() => setIdToDelete(null)}
           idToDelete={idToDelete}
-          setReloadDataUsers={setReloadDataUsers}
+          setReloadData={setReloadData}
         />
       )}
     </>
