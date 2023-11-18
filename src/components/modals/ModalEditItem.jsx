@@ -1,32 +1,34 @@
 import { useForm } from "../../hooks/useForm";
 import ModalLayout from "../../layout/ModalLayout";
-import { putItem } from "../../services/item.services";
+import { putItemInventory } from "../../services/inventory.services";
 
 const ModalEditItem = ({
   isOpen,
   onClose,
   itemToEdit = {},
-  setReloadDataItems,
+  setReloadData,
 }) => {
 
   const { formState, onInputChange, onResetForm } = useForm(itemToEdit);
 
-  const { nombre, cantidad, tipo, descripcion } = formState;
+  const { name, amount, type, description } = formState;
 
   const handleSave = async () => {
     const data = {
-      nombre: nombre,
-      cantidad: cantidad,
-      tipo: tipo,
-      descripcion: descripcion,
+      name: name.trim(),
+      amount: amount,
+      type: type.trim(),
+      description: description.trim(),
     };
 
-    await putItem(itemToEdit.id, data);
+    const res = await putItemInventory(itemToEdit.id, data);
 
     // cerramos y reseteamos el formulario
-    onResetForm();
-    onClose();
-    setReloadDataItems((prev) => !prev);
+    if(res.ok){
+      onResetForm();
+      onClose();
+      setReloadData((prev) => !prev);
+    }
   };
 
   return (
@@ -49,7 +51,7 @@ const ModalEditItem = ({
             onChange={onInputChange}
             placeholder="nombre del objeto"
             type="text"
-            defaultValue={nombre}
+            value={name}
           />
         </div>
         <div className="mb-4">
@@ -61,11 +63,11 @@ const ModalEditItem = ({
           </label>
           <input
             className="w-full border rounded-md py-2 px-3"
-            name="cantidad"
+            name="amount"
             onChange={onInputChange}
             placeholder="20"
             type="number"
-            defaultValue={cantidad}
+            value={amount}
           />
         </div>
         <div className="mb-4">
@@ -77,11 +79,11 @@ const ModalEditItem = ({
           </label>
           <input
             className="w-full border rounded-md py-2 px-3"
-            name="tipo"
+            name="type"
             onChange={onInputChange}
             placeholder="suministro"
             type="text"
-            defaultValue={tipo}
+            value={type}
           />
         </div>
         <div className="mb-4">
@@ -91,13 +93,14 @@ const ModalEditItem = ({
           >
             Descripcion
           </label>
-          <input
+          <textarea
             className="w-full border rounded-md py-2 px-3"
-            name="descripcion"
+            name="description"
+            cols={45}
             onChange={onInputChange}
             placeholder="martillo rojo dañao"
             type="text"
-            defaultValue={descripcion}
+            value={description}
           />
         </div>
         <button

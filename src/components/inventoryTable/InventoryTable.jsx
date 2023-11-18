@@ -1,10 +1,10 @@
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import { Card, Typography, Chip } from "@material-tailwind/react";
-import ModalEditItem from "../modals/ModalNewItem"; // reemplazar Employee por item
+import ModalEditItem from "../modals/ModalEditItem";
 import ModalDeleteItem from "../modals/ModelDeleteItem";
 import { useState } from "react";
 
-const EmployeeTable = ({ arrItems = [], setReloadData }) => {
+const InventoryTable = ({ arrItems = [], setReloadData }) => {
 
   const TABLE_HEAD = ["Nombre", "Cantidad", "Tipo", "Descripción", "Acciones"];
   const [itemSelected, setItemSelected] = useState([]);
@@ -30,7 +30,7 @@ const EmployeeTable = ({ arrItems = [], setReloadData }) => {
 
   return (
     <>
-      <Card className="mt-4 h-full w-full border border-fondo">
+      <Card className="mt-4 h-full w-full border border-fondo font-montserrat ">
         <table className="w-full min-w-max table-auto text-left">
           <thead>
             <tr>
@@ -96,7 +96,7 @@ const EmployeeTable = ({ arrItems = [], setReloadData }) => {
                     <div className="flex items-center space-x-2">
                       <button
                         className="border rounded p-1 hover:bg-primary hover:text-white cursor-pointer"
-                        onClick={() => setItemSelected(item.id)}
+                        onClick={() => setItemSelected(item)}
                       >
                         <PencilSquareIcon className="h-5 w-5" />
                       </button>
@@ -134,4 +134,4 @@ const EmployeeTable = ({ arrItems = [], setReloadData }) => {
   );
 };
 
-export default EmployeeTable;
+export default InventoryTable;
