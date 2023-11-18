@@ -1,7 +1,7 @@
 import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/solid";
 import { Card, Typography, Chip } from "@material-tailwind/react";
 import ModalEditItem from "../modals/ModalNewItem"; // reemplazar Employee por item
-import ModalDeleteItem from "../modals/ModelDeleteEmployee"; // reemplazar Employee por item
+import ModalDeleteItem from "../modals/ModelDeleteItem";
 import { useState } from "react";
 
 const EmployeeTable = ({ arrItems = [], setReloadData }) => {
@@ -10,17 +10,11 @@ const EmployeeTable = ({ arrItems = [], setReloadData }) => {
   const [itemSelected, setItemSelected] = useState([]);
   const [idToDelete, setIdToDelete] = useState(null);
 
-  const getColorItem = (type) => {
-    switch (type) {
-      case "suministros":
-        return "green";
-      case "medicamentos":
-        return "blue";
-      case "equipos":
-        return "red";
-      case "otros":
-        return "gray";
-    }
+  const colors = {
+    suministros: "green",
+    medicamentos: "blue",
+    equipos: "red",
+    otros: "gray"
   };
 
   if (arrItems.length === 0)
@@ -85,7 +79,7 @@ const EmployeeTable = ({ arrItems = [], setReloadData }) => {
                         variant="ghost"
                         size="sm"
                         value={item.type}
-                        color={getColorItem(item.type)}
+                        color={colors[item.type]}
                       />
                     </div>
                   </td>

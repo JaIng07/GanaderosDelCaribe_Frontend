@@ -1,18 +1,18 @@
 import ModalLayout from "../../layout/ModalLayout";
-import { deleteItem } from "../../services/item.services";
+import { deleteItemInventory } from "../../services/inventory.services";
 
 
-const ModalDeleteItem = ({ isOpen, onClose, idToDelete, setReloadDataItems}) => {
+const ModalDeleteItem = ({ isOpen, onClose, idToDelete, setReloadData}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!idToDelete) return;
 
-    const res = await deleteItem(idToDelete);
+    const res = await deleteItemInventory(idToDelete);
     if (res.ok) {
       onClose()
-      setReloadDataItems(prev=>!prev)
+      setReloadData(prev=>!prev)
     }
   };
 
