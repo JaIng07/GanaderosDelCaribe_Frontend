@@ -1,7 +1,8 @@
 import {
   ClipboardDocumentCheckIcon,
   UsersIcon,
-  TableCellsIcon
+  TableCellsIcon,
+  CubeTransparentIcon
 } from "@heroicons/react/24/outline";
 // https://heroicons.com/
 
@@ -24,6 +25,12 @@ export const sidebarItemsADMIN = [
     active: "activity-register",
     icon: TableCellsIcon,
   },
+  {
+    title: "Control de Inventario",
+    path: "/dashboard/inventory-control",
+    active: "inventory-control",
+    icon: CubeTransparentIcon,
+  },
 ];
 
 export const sidebarItemsUSER = [
@@ -39,6 +46,11 @@ export const sidebarItemsUSER = [
     active: "activity-register",
     icon: TableCellsIcon,
   },
-
+  {
+    title: "Control de Inventario",
+    path: "/dashboard/inventory-control",
+    active: "inventory-control",
+    icon: CubeTransparentIcon,
+  },
 ]
 
