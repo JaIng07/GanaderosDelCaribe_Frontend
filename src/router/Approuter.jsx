@@ -9,6 +9,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import PublicRoutes from "./PublicRoutes";
 import ActivityRegister from "../pages/dashboard/ActivityRegister/ActivityRegister";
 import ActivityRegisterAdmin from "../pages/dashboard/ActivityRegister/ActivityRegisterAdmin";
+import InventoryControl from "../pages/dashboard/InventoryControl/InventoryControl";
 
 const roles = {
   ADMIN: "admin",
@@ -45,6 +46,10 @@ const Approuter = createBrowserRouter([
   {
     path: "/dashboard/activity-register/:idUser",
     element:  <PrivateRoutes rol={roles.ADMIN}><ActivityRegisterAdmin /></PrivateRoutes>
+  },
+  {
+    path: "/dashboard/inventory-control",
+    element:  <PrivateRoutes rol={roles.ANY}><InventoryControl /></PrivateRoutes>
   }
 ]);
 
