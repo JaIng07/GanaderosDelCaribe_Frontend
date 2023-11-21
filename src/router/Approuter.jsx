@@ -13,8 +13,6 @@ import InventoryControl from "../pages/dashboard/InventoryControl/InventoryContr
 import EcommerceAdmin from "../pages/dashboard/EcommerceAdmin/EcommerceAdmin";
 import EcommerceClient from "../pages/ecommerce/EcommerceClient";
 import IndexStatusAnimal from "../pages/dashboard/StatusAnimal/index"
-import EcommerceAdmin from "../pages/dashboard/EcommerceAdmin/EcommerceAdmin";
-import EcommerceClient from "../pages/ecommerce/EcommerceClient";
 
 const roles = {
   ADMIN: "admin",
