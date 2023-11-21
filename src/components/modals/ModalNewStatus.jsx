@@ -4,7 +4,12 @@ import { useEffect, useState } from "react";
 import { createStatus } from "../../services/animalStatus.services";
 
 // eslint-disable-next-line react/prop-types
-const ModalNewStatus = ({ isOpen, onClose, setReloadDataStatuses }) => {
+const ModalNewStatus = ({
+  isOpen,
+  onClose,
+  setReloadDataStatuses,
+  animalId,
+}) => {
   const [isActive, setIsActive] = useState(false);
   const { formState, onInputChange, onResetForm } = useForm({
     status: "",
@@ -18,15 +23,15 @@ const ModalNewStatus = ({ isOpen, onClose, setReloadDataStatuses }) => {
 
     const payload = {
       status: status.trim(),
-      description:description.trim(),
+      description: description.trim(),
+      animalId,
     };
 
-    //if (!identificationNumber || !race || !weight || !birthdate) return;
-
+    console.log(payload);
     const res = await createStatus(payload);
 
     if (res.ok) {
-      setReloadDataStatuses(prev=>!prev)
+      setReloadDataStatuses((prev) => !prev);
       // cerramos y reseteamos el formulario
       onResetForm();
       setIsActive(false);
@@ -34,15 +39,10 @@ const ModalNewStatus = ({ isOpen, onClose, setReloadDataStatuses }) => {
     }
   };
 
- // habilita el boton guardar cuando todos los campos estan llenos
+  // habilita el boton guardar cuando todos los campos estan llenos
   useEffect(() => {
-    if (
-      status.trim() &&
-      description.trim()
-    )
-      setIsActive(true);
+    if (status.trim() && description.trim()) setIsActive(true);
   }, [status, description]);
-
 
   return (
     <ModalLayout
@@ -75,15 +75,15 @@ const ModalNewStatus = ({ isOpen, onClose, setReloadDataStatuses }) => {
           >
             Descripción
           </label>
-          <textarea 
-            className="w-full border rounded-md py-2 px-3" 
-            name="description" 
-            cols="50" 
-            rows="10" 
+          <textarea
+            className="w-full border rounded-md py-2 px-3"
+            name="description"
+            cols="50"
+            rows="10"
             onChange={onInputChange}
-            placeholder="El animal es sano" 
+            placeholder="El animal es sano"
             value={description}
-        />
+          />
         </div>
         <button
           className={`py-2 px-4 rounded ${

@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { TrashIcon, PencilSquareIcon } from "@heroicons/react/24/outline";
+import {
+  TrashIcon,
+  PencilSquareIcon,
+  HeartIcon,
+} from "@heroicons/react/24/outline";
 import DashboardLayout from "../../../layout/DashboardLayout";
 import ModalEditAnimal from "../../../components/modals/ModalEditAnimal";
 import ModalDeleteAnimal from "../../../components/modals/ModalDeleteAnimal";
 import { getAnimal } from "../../../services/animal.services";
-import axios from "axios";
 import TimelineStatus from "../../../components/timelineStatus/TimelineStatus";
-import { baseUrl } from "../../../services/axios.interceptor";
+import { getStatusByID } from "../../../services/animalStatus.services";
+import ModalNewStatus from "../../../components/modals/ModalNewStatus";
 
 const AnimalRegistrationWithID = () => {
   let { idAnimal } = useParams();
@@ -15,7 +19,9 @@ const AnimalRegistrationWithID = () => {
   const [animal, setAnimal] = useState({});
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const [isOpenModalCreate, setIsOpenModalCreate] = useState(false);
   const [reloadAnimal, setReloadAnimal] = useState(false);
+  const [reloadStateAnimal, setReloadStateAnimal] = useState(false);
   const [statusAnimal, setStatusAnimal] = useState([]);
 
   const openEditModal = () => setIsEditModalOpen(true);
@@ -33,14 +39,14 @@ const AnimalRegistrationWithID = () => {
 
   useEffect(() => {
     const obtainStatuAnimalByID = async () => {
-      const { status } = await axios.get(`${baseUrl}/statusAnimal/${idAnimal}`);
+      const { status } = await getStatusByID(idAnimal);
       const sortedStatus = status.sort(
         (a, b) => new Date(b.date) - new Date(a.date)
       );
       setStatusAnimal(sortedStatus);
     };
     obtainStatuAnimalByID();
-  }, [idAnimal]);
+  }, [idAnimal, reloadStateAnimal]);
 
   if (!animal) {
     return (
@@ -72,10 +78,16 @@ const AnimalRegistrationWithID = () => {
             <TrashIcon className="h-5 w-5" />
           </div>
           <div
-            className="border rounded p-1 hover:bg-primary hover:text-black cursor-pointer"
+            className="border rounded p-1 hover:bg-primary hover:text-white cursor-pointer"
             onClick={openEditModal}
           >
             <PencilSquareIcon className="h-5 w-5" />
+          </div>
+          <div
+            className="border rounded p-1 hover:bg-primary hover:text-white cursor-pointer"
+            onClick={() => setIsOpenModalCreate(true)}
+          >
+            <HeartIcon className="h-5 w-5" />
           </div>
         </div>
         {animal.id && (
@@ -91,6 +103,14 @@ const AnimalRegistrationWithID = () => {
             isOpen={isDeleteModalOpen}
             onClose={closeDeleteModal}
             animalToDelete={animal}
+          />
+        )}
+        {(idAnimal) && (
+          <ModalNewStatus
+            animalId={idAnimal}
+            isOpen={isOpenModalCreate}
+            onClose={() => setIsOpenModalCreate(false)}
+            setReloadDataStatuses={setReloadStateAnimal}
           />
         )}
       </div>

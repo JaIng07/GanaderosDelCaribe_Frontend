@@ -1,12 +1,9 @@
 import { useEffect, useState } from "react";
 import DashboardLayout from "../../../layout/DashboardLayout";
-import { PlusIcon } from "@heroicons/react/24/outline";
 import { getStatuses } from "../../../services/animalStatus.services";
 import StatusTable from "../../../components/statusTable/StatusTable";
-import ModalNewStatus from "../../../components/modals/ModalNewStatus";
 
 function StatusAnimal() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [reloadDataStatuses, setReloadDataStatuses] = useState(false);
   const [arrStatuses, setArrStatuses] = useState([]);
 
@@ -21,8 +18,6 @@ function StatusAnimal() {
     getAllStatuses();
   }, [reloadDataStatuses]);
 
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   return (
     <DashboardLayout>
@@ -30,19 +25,8 @@ function StatusAnimal() {
         <p className="text-base font-montserrat font-normal md:text-xl">
           Panel registro de estados
         </p>
-        <div
-          className="border rounded p-1 hover:bg-primary hover:text-white cursor-pointer"
-          onClick={openModal}
-        >
-          <PlusIcon className="h-5 w-5" />
-        </div>
       </div>
       <StatusTable arrStatuses={arrStatuses} setReloadDataStatuses={setReloadDataStatuses} />
-      <ModalNewStatus
-        isOpen={isModalOpen}
-        onClose={closeModal}
-        setReloadDataStatuses={setReloadDataStatuses}
-      />
     </DashboardLayout>
   );
 }

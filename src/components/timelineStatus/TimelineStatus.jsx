@@ -34,7 +34,7 @@ function TimelineStatus({ data= []}) {
             </Typography>
           </TimelineHeader>
           <TimelineBody className="pb-8">
-            <Typography variant="small" color="gary" className="font-normal text-gray-600">
+            <Typography variant="small" className="font-normal text-gray-600">
               {status.description}
             </Typography>
           </TimelineBody>
