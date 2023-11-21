@@ -10,6 +10,8 @@ import PublicRoutes from "./PublicRoutes";
 import ActivityRegister from "../pages/dashboard/ActivityRegister/ActivityRegister";
 import ActivityRegisterAdmin from "../pages/dashboard/ActivityRegister/ActivityRegisterAdmin";
 import InventoryControl from "../pages/dashboard/InventoryControl/InventoryControl";
+import EcommerceAdmin from "../pages/dashboard/EcommerceAdmin/EcommerceAdmin";
+import EcommerceClient from "../pages/ecommerce/EcommerceClient";
 import IndexStatusAnimal from "../pages/dashboard/StatusAnimal/index"
 import EcommerceAdmin from "../pages/dashboard/EcommerceAdmin/EcommerceAdmin";
 import EcommerceClient from "../pages/ecommerce/EcommerceClient";
