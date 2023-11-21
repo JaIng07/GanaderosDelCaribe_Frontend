@@ -89,7 +89,7 @@ const InventoryTable = ({ arrItems = [], setReloadData }) => {
                       color="blue-gray"
                       className="font-normal"
                     >
-                      {item.description}
+                      {item.description.substring(0, 40) + "..." }
                     </Typography>
                   </td>
                   <td className="p-4 border-b border-fondo">
