@@ -2,7 +2,7 @@ import axios from 'axios'
 import SnackbarUtils from '../common/snackAlertBar/SnackAlertBar'
 import { removeToken } from '../helpers/JWT'
 
-export const baseUrl = "http://localhost:8080/api"
+export const baseUrl = "https://ganaderosbackend.onrender.com/api"
 
 export const AxiosInterceptor = () => {
 

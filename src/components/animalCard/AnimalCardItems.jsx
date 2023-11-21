@@ -8,7 +8,7 @@ function AnimalCardItems({ id, raza, birthDate, peso, imagenUrl, identificationN
     : "https://i.pinimg.com/474x/18/cc/58/18cc58f204186fe709ebcb229895b43e.jpg";
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 font-montserrat font-normal max-h-[1000px]">
+    <div className="bg-white rounded-lg shadow-md p-4 font-montserrat font-normal max-h-[1000px] w-[300px]">
       <div className="grid justify-items-center w-full">
         <img
           src={image}

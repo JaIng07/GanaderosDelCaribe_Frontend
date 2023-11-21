@@ -12,7 +12,7 @@ const animalCards = ({ arrAnimals = [] }) => {
     );
 
   return (
-    <div className="pt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 place-content-stretch">
+    <div className="pt-10 flex flex-wrap gap-4 justify-center">
       {arrAnimals.map((animal) => (
         <AnimalCardItems
           key={animal.id}

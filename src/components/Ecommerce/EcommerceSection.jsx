@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 
 const EcommerceSection = () => {
   return (
-    <header className="bg-white dark:bg-gray-900 font-montserrat">
-      <div className="container flex flex-col px-6 mb-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+    <header className="font-montserrat text-white mb-20">
+      <div className="p-10 container flex flex-col mb-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center bg-primary rounded-xl">
         <div className="flex flex-col items-center w-full lg:flex-row lg:w-1/2">
           <div className="max-w-lg lg:mx-12 lg:order-2">
-            <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-4xllg:text-4xl">
+            <h1 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-4xllg:text-4xl">
               Compra lo mejores productos del campo
             </h1>
-            <p className="mt-6 text-lg leading-8 text-gray-600">
+            <p className="mt-6 text-lg leading-8  text-white/80">
               Sumérgete en la autenticidad de la vida en el campo con nuestra
               selección de productos de calidad. Desde la frescura de la leche
               recién ordeñada hasta herramientas robustas para la gestión
@@ -17,11 +17,11 @@ const EcommerceSection = () => {
               relacionado con la vida rural. !Haz clic! y descubre la esencia
               del campo en cada producto.
             </p>
-            <div className="mt-6">
+            <div className="mt-10">
               <Link
                 to="/ecommerce"
-                className="px-6 py-2.5 mt-6 text-sm font-medium leading-5 text-center text-white capitalize bg-primary rounded-lg hover:bg-primary/75 lg:mx-0 lg:w-auto focus:outline-none"
-              >
+                className="mx-auto lg:mx-0 hover:underline bg-white text-gray-800 font-bold rounded-md my-6 py-4 px-8 shadow-lg focus:outline-none focus:shadow-outline transform transition hover:scale-105 duration-300 ease-in-out"
+                >
                 Ir a la tienda
               </Link>
             </div>
