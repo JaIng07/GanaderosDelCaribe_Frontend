@@ -1,6 +1,6 @@
 import CardEcommerce from "../../pages/dashboard/EcommerceAdmin/CardEcommerce";
 
-const EcommerceTable = ({ arrProducts = [] }) => {
+const EcommerceGrid = ({ arrProducts = [], setIdToDelete, setProductSelected }) => {
   if (arrProducts.length === 0)
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -17,18 +17,14 @@ const EcommerceTable = ({ arrProducts = [] }) => {
       {arrProducts.map((product) => (
         <CardEcommerce
           key={product.id}
-          productName={product.productName}
-          img={product.img}
-          price={product.price}
-          description={product.description}
           visitor="admin"
-          stock={product.stock}
-          unit={product.unit}
-          date={product.date}
+          setProductSelected={setProductSelected}
+          setIdToDelete={setIdToDelete}
+          {...product}
         />
       ))}
     </div>
   );
 };
 
-export default EcommerceTable;
+export default EcommerceGrid;

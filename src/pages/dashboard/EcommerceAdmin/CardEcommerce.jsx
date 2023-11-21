@@ -8,20 +8,16 @@ import {
 } from "@material-tailwind/react";
 
 const CardEcommerce = ({
-  productName,
-  img,
-  price,
-  description,
-  stock,
-  unit,
-  date,
   visitor = "client",
+  setIdToDelete,
+  setProductSelected,
+  ...rest
 }) => {
   return (
     <Card className="w-[300px] font-montserrat">
       <CardHeader shadow={false} floated={false} className="h-32 w-50">
         <img
-          src={img}
+          src={rest.img}
           alt="card-image"
           className="h-full w-full object-cover"
         />
@@ -29,15 +25,15 @@ const CardEcommerce = ({
       <CardBody>
         <div className="mb-2 flex items-center justify-between">
           <Typography color="blue-gray" className="font-bold">
-            {productName}
+            {rest.productName}
           </Typography>
           <Typography color="blue-gray" className="font-medium">
-            $ {price} Cop
+            $ {rest.price} Cop
           </Typography>
         </div>
         <div className="mt-2 flex items-center justify-between">
           <Typography variant="small" color="gray">
-            Disponible: {stock} {unit}
+            Disponible: {rest.stock} {rest.unit}
           </Typography>
         </div>
         <Typography
@@ -45,26 +41,31 @@ const CardEcommerce = ({
           color="gray"
           className="text-justify mt-2 mb-4"
         >
-          {description}
+          {rest.description}
         </Typography>
         <hr />
         <Typography variant="small" color="gray">
-          {date}
+          {rest.date}
         </Typography>
       </CardBody>
       <CardFooter className="pt-0">
-        {visitor === "admin" ? <FooterAdmin /> : <FooterClient />}
+        {visitor === "admin" ? (
+          <FooterAdmin setIdToDelete={setIdToDelete} product={rest} setProductSelected={setProductSelected}/>
+        ) : (
+          <FooterClient/>
+        )}
       </CardFooter>
     </Card>
   );
 };
 
-const FooterAdmin = () => {
+const FooterAdmin = ({ setIdToDelete, setProductSelected,  product}) => {
   return (
     <div className="flex gap-2">
       <Button
         ripple={false}
         fullWidth={true}
+        onClick={() => setProductSelected(product)}
         className="bg-secondary text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
       >
         Editar
@@ -72,6 +73,7 @@ const FooterAdmin = () => {
       <Button
         ripple={false}
         fullWidth={true}
+        onClick={() => setIdToDelete(product.id)}
         className="bg-red-500  text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
       >
         Eliminar
