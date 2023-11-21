@@ -2,8 +2,9 @@ import {
   ClipboardDocumentCheckIcon,
   UsersIcon,
   TableCellsIcon,
-  CubeTransparentIcon,
-  CheckBadgeIcon,
+  ArchiveBoxIcon,
+  ShoppingBagIcon,
+  CheckBadgeIcon
 } from "@heroicons/react/24/outline";
 // https://heroicons.com/
 
@@ -36,8 +37,14 @@ export const sidebarItemsADMIN = [
     title: "Control de Inventario",
     path: "/dashboard/inventory-control",
     active: "inventory-control",
-    icon: CubeTransparentIcon,
+    icon: ArchiveBoxIcon,
   },
+  {
+    title: "Tienda Virual",
+    path: "/dashboard/ecommerce-control",
+    active: "ecommerce-control",
+    icon: ShoppingBagIcon,
+  }
 ];
 
 export const sidebarItemsUSER = [
@@ -57,7 +64,7 @@ export const sidebarItemsUSER = [
     title: "Control de Inventario",
     path: "/dashboard/inventory-control",
     active: "inventory-control",
-    icon: CubeTransparentIcon,
+    icon: ArchiveBoxIcon,
   },
 ]
 

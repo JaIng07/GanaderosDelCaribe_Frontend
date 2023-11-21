@@ -8,17 +8,25 @@ import UserOne from "../../assets/user-01.png";
 import useDrawer from "../../hooks/useDrawer";
 import DropdownUserOptions from "./DropdownUserOptions";
 import { userOptions } from "../../data/userOptions";
-import { removeToken } from "../../helpers/JWT";
+import { decodedToken, getToken, removeToken } from "../../helpers/JWT";
+import React, { useEffect } from "react";
 
 const DropdownUser = () => {
   const navigate = useNavigate();
 
   const { drawerOpen, setDrawerOpen, trigger, drawer } = useDrawer();
+  const [ userData, setUserData ] = React.useState({})
 
   const signOut = () => {
     navigate("/auth/login");
     removeToken()
   };
+
+  useEffect(() => { 
+    const token = getToken()
+    const { username, rol } = decodedToken(token)
+    setUserData({ username, rol })
+  }, []);
 
   return (
     <div className="relative">
@@ -28,7 +36,7 @@ const DropdownUser = () => {
         className="flex items-center gap-4"
       >
         <span className="text-right lg:block font-montserrat font-normal">
-          <span className="block text-sm text-black">Hassan Barranco</span>
+          <span className="block text-sm text-black">{userData.username}</span>
           <span className="block text-xs">Finca dontimaton</span>
         </span>
 
