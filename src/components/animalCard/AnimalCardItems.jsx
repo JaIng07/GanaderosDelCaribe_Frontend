@@ -20,25 +20,25 @@ function AnimalCardItems({ id, raza, birthDate, peso, imagenUrl, identificationN
         <div className="col-span-2 md:col-span-1">
           <div className="bg-gray-50 p-3 rounded-lg">
             <p className="text-gray-600 text-sm">Número de Identificación:</p>
-            <p className="text-lg font-medium pt-1">{identificationNumber}</p>
+            <p className="text-sm font-medium pt-1">{identificationNumber}</p>
           </div>
         </div>
         <div className="col-span-2 md:col-span-1">
           <div className="bg-gray-50 p-3 rounded-lg">
             <p className="text-gray-600 text-sm">Raza:</p>
-            <p className="text-lg font-medium pt-1">{raza}</p>
+            <p className="text-sm font-medium pt-1">{raza}</p>
           </div>
         </div>
         <div className="col-span-2 md:col-span-1">
           <div className="bg-gray-50 p-3 rounded-lg">
             <p className="text-gray-600 text-sm">Fecha de nacimiento:</p>
-            <p className="text-lg font-medium pt-1">{birthDate}</p>
+            <p className="text-sm font-medium pt-1">{birthDate}</p>
           </div>
         </div>
         <div className="col-span-2 md:col-span-1">
           <div className="bg-gray-50 p-3 rounded-lg">
             <p className="text-gray-600 text-sm">Peso:</p>
-            <p className="text-lg font-medium pt-1">{peso}</p>
+            <p className="text-sm font-medium pt-1">{peso} kg</p>
           </div>
         </div>
       </div>
