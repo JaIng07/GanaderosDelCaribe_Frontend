@@ -12,6 +12,7 @@ import ActivityRegisterAdmin from "../pages/dashboard/ActivityRegister/ActivityR
 import InventoryControl from "../pages/dashboard/InventoryControl/InventoryControl";
 import EcommerceAdmin from "../pages/dashboard/EcommerceAdmin/EcommerceAdmin";
 import EcommerceClient from "../pages/ecommerce/EcommerceClient";
+import IndexStatusAnimal from "../pages/dashboard/StatusAnimal/index"
 
 const roles = {
   ADMIN: "admin",
@@ -32,6 +33,10 @@ const Approuter = createBrowserRouter([
   {
     path: "/dashboard/animal-registration",
     element: <PrivateRoutes rol={roles.ANY}><IndexAnimalRegistration /></PrivateRoutes>,
+  },
+  {
+    path: "/dashboard/status-animal",
+    element: <PrivateRoutes rol={roles.ANY}><IndexStatusAnimal /></PrivateRoutes>,
   },
   {
     path: "/dashboard/animal-registration/:idAnimal",
