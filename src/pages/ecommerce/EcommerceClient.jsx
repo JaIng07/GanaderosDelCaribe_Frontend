@@ -3,7 +3,7 @@ import Navbar from '../../components/navbar/Navbar'
 import Footer from '../../components/footer/Footer'
 import EcommerceGrid from '../../components/Ecommerce/EcommerceGrid'
 import { getProducts } from '../../services/ecommerce.services'
-import NavbarEcommerce from '../../components/ecommerce/NavbarEcommerce'
+import NavbarEcommerce from '../../components/Ecommerce/NavbarEcommerce'
 import CartEcommerce from '../../components/ecommerce/CartEcommerce'
 import { addCartProducts } from '../../helpers/cart'
 
