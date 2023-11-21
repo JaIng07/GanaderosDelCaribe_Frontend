@@ -1,13 +1,12 @@
 import ModalLayout from "../../layout/ModalLayout";
 import { useForm } from "../../hooks/useForm";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { Option, Select } from "@material-tailwind/react";
 import { createProduct } from "../../services/ecommerce.services";
 
 const ModalNewProduct = ({ isOpen, onClose, setReloadDataUsers }) => {
   const [isActive, setIsActive] = useState(false);
-
-  const selectRef = useRef();
+  const [unit, setUnit] = useState();
 
   const { formState, onInputChange, onResetForm } = useForm({
     productName: "",
@@ -22,16 +21,14 @@ const ModalNewProduct = ({ isOpen, onClose, setReloadDataUsers }) => {
     e.preventDefault();
 
     const payload = {
-      productName: productName.trim(),
-      price: price.trim(),
+      productName: productName,
+      price: price,
       stock: stock,
-      unit: selectRef?.current?.innerText,
-      description: description.trim(),
+      unit: unit,
+      description: description,
       date: new Date().toLocaleDateString().slice(0, 10),
     };
 
-    console.log(selectRef)
-    console.log(payload);
     const res = await createProduct(payload);
 
     if (res.ok) {
@@ -44,15 +41,8 @@ const ModalNewProduct = ({ isOpen, onClose, setReloadDataUsers }) => {
 
   // habilita el boton guardar cuando todos los campos estan llenos
   useEffect(() => {
-    if (
-      productName.trim() &&
-      price.trim() &&
-      stock.trim() &&
-      selectRef?.current?.innerText  !== '' &&
-      description.trim()
-    )
-      setIsActive(true);
-  }, [productName, price, stock, selectRef?.current?.innerText, description]);
+    if (productName && price && stock && unit && description) setIsActive(true);
+  }, [productName, price, stock, unit, description]);
 
   return (
     <ModalLayout
@@ -121,14 +111,14 @@ const ModalNewProduct = ({ isOpen, onClose, setReloadDataUsers }) => {
           >
             Unidad de medida
           </label>
-          <Select  ref={selectRef}>
-            <Option>Cabezas</Option>
-            <Option>Litros</Option>
-            <Option>Kilogramos</Option>
-            <Option>Gramos</Option>
-            <Option>Docenas</Option>
-            <Option>Metros cuadrados</Option>
-            <Option>Unidades</Option>
+          <Select onChange={(value) => setUnit(value)}>
+            <Option value="Cabezas">Cabezas</Option>
+            <Option value="Litros">Litros</Option>
+            <Option value="Kilogramos">Kilogramos</Option>
+            <Option value="Gramos">Gramos</Option>
+            <Option value="Docenas">Docenas</Option>
+            <Option value="Metros cuadrados">Metros cuadrados</Option>
+            <Option value="Unidades">Unidades</Option>
           </Select>
         </div>
 
