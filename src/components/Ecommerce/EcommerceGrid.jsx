@@ -1,6 +1,12 @@
 import CardEcommerce from "../../pages/dashboard/EcommerceAdmin/CardEcommerce";
 
-const EcommerceGrid = ({ arrProducts = [], setIdToDelete, setProductSelected }) => {
+const EcommerceGrid = ({
+  arrProducts = [],
+  setIdToDelete,
+  setProductSelected,
+  visitor,
+  addCartProducts,
+}) => {
   if (arrProducts.length === 0)
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -13,11 +19,12 @@ const EcommerceGrid = ({ arrProducts = [], setIdToDelete, setProductSelected }) 
     );
 
   return (
-    <div className="flex flex-row gap-6 pt-10 justify-center">
+    <div className="flex flex-wrap gap-6 pt-10 justify-center">
       {arrProducts.map((product) => (
         <CardEcommerce
+          addCartProducts={addCartProducts}
           key={product.id}
-          visitor="admin"
+          visitor={visitor}
           setProductSelected={setProductSelected}
           setIdToDelete={setIdToDelete}
           {...product}

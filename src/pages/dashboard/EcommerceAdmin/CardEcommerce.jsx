@@ -11,6 +11,7 @@ const CardEcommerce = ({
   visitor = "client",
   setIdToDelete,
   setProductSelected,
+  addCartProducts,
   ...rest
 }) => {
   return (
@@ -43,7 +44,7 @@ const CardEcommerce = ({
         >
           {rest.description}
         </Typography>
-        <hr />
+        <hr className="pb-3"/>
         <Typography variant="small" color="gray">
           {rest.date}
         </Typography>
@@ -52,7 +53,7 @@ const CardEcommerce = ({
         {visitor === "admin" ? (
           <FooterAdmin setIdToDelete={setIdToDelete} product={rest} setProductSelected={setProductSelected}/>
         ) : (
-          <FooterClient/>
+          <FooterClient addCartProducts={addCartProducts} product={rest}/>
         )}
       </CardFooter>
     </Card>
@@ -82,14 +83,15 @@ const FooterAdmin = ({ setIdToDelete, setProductSelected,  product}) => {
   );
 };
 
-const FooterClient = () => {
+const FooterClient = ({addCartProducts, product}) => {
   return (
     <Button
       ripple={false}
+      onClick={() => addCartProducts(product)}
       fullWidth={true}
       className="bg-primary text-white shadow-none hover:scale-105 hover:shadow-none focus:scale-105 focus:shadow-none active:scale-100"
     >
-      Buy
+      Agregar al carrito
     </Button>
   );
 };

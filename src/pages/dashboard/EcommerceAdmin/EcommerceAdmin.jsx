@@ -44,6 +44,7 @@ const EcommerceAdmin = () => {
         </div>
       </div>
       <EcommerceGrid
+       visitor="admin"
         arrProducts={data}
         setIdToDelete={setIdToDelete}
         setProductSelected={setProductSelected}
